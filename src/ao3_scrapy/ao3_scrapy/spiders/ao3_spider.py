@@ -40,7 +40,7 @@ class HistorySpider(scrapy.Spider):
             self.logger.error("Login failed")
             return
         else:
-            return Request(
+            return scrapy.Request(
                 url='https://archiveofourown.org/users/jeza/readings',
                 callback=self.parse_history
             )
