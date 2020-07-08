@@ -1,7 +1,7 @@
 # spider to scrape from reading history
 import scrapy
 
-class WorkSpider(scrapy.Spirder):
+class WorkSpider(scrapy.Spider):
     name = "works"
 
     # Returns iterable of Requests
