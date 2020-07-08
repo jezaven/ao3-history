@@ -17,8 +17,30 @@ class WorkSpider(scrapy.Spider):
 
     # Handles response downloaded from Requests
     def parse(self, response):
-        page = response.url.split("/")[-2]
-        filename = '%s.html' % page
-        with open(filename, 'wb') as f:
-            f.write(response.body)
-        self.log('Saved file %s' % filename)
+        for work in response.css('li.work'):
+            # NOTE: href values (urls) can be found using ::attr(href)
+            yield {
+                'title' : work.css('div.header h4.heading a::text').getall()[0],
+                'author' : work.css('div.header h4.heading a::text').getall()[1],
+                'fandoms' : work.css('div.header h5.fandoms a::text').getall(),
+                'tags' : {
+                        'warnings' : work.css('ul.tags li.warnings a.tag::text').getall(),
+                        'relationships' : work.css('ul.tags li.relationships a.tag::text').getall(),
+                        'characters' : work.css('ul.tags li.characters a.tag::text').getall(),
+                        'freeforms' : work.css('ul.tags li.freeforms a.tag::text').getall(),
+                    },
+                # NOTE: this needs to be reformatted in particular; currently stores as list
+                'summary' :  work.css('blockquote.userstuff p::text').getall(),
+                'stats' : {
+                        'language' : work.css('dl.stats dd.language::text').getall(),
+                        # NOTE: this should be reformatted to an int
+                        'word_count' : work.css('dl.stats dd.words::text').getall(),
+                        # NOTE: chapter_done and chapter_total should be reformatted together
+                        'chapter_done' : work.css('dl.stats dd.chapters a::text').getall(),
+                        'chapter_total' : work.css('dl.stats dd.chapters::text').getall(),
+                        'comments' : work.css('dl.stats dd.comments a::text').getall(),
+                        'kudos' : work.css('dl.stats dd.kudos a::text').getall(),
+                        'bookmarks' : work.css('dl.stats dd.bookmarks a::text').getall(),
+                        'hits' : work.css('dl.stats dd.hits::text').getall()
+                    }
+            }
