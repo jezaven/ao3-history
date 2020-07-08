@@ -1,0 +1,2 @@
+# python packages required to run ao3-history
+scrapy==2.1.0
