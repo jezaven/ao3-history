@@ -25,4 +25,8 @@ class LoginSpider(scrapy.Spider):
     def after_login(self, response):
         if authentication_failed(response):
             self.logger.error("Login failed")
-            return
+        page = response.url.split("/")[-2]
+        filename = 'post_login.html'
+        with open(filename, 'wb') as f:
+            f.write(response.body)
+        return

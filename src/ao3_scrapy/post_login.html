@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+<script>window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","errorBeacon":"bam.nr-data.net","licenseKey":"f2edcff25e","applicationID":"190034","transactionName":"dgwMEkpfWVsHERpHRVAREUlLWFpA","queueTime":0,"applicationTime":113,"agent":""}</script>
+<script>(window.NREUM||(NREUM={})).loader_config={xpid:"VQcCWV9RGwIJVFFRAw==",licenseKey:"f2edcff25e",applicationID:"190034"};window.NREUM||(NREUM={}),__nr_require=function(t,n,e){function r(e){if(!n[e]){var o=n[e]={exports:{}};t[e][0].call(o.exports,function(n){var o=t[e][1][n];return r(o||n)},o,o.exports)}return n[e].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<e.length;o++)r(e[o]);return r}({1:[function(t,n,e){function r(t){try{s.console&&console.log(t)}catch(n){}}var o,i=t("ee"),a=t(21),s={};try{o=localStorage.getItem("__nr_flags").split(","),console&&"function"==typeof console.log&&(s.console=!0,o.indexOf("dev")!==-1&&(s.dev=!0),o.indexOf("nr_dev")!==-1&&(s.nrDev=!0))}catch(c){}s.nrDev&&i.on("internal-error",function(t){r(t.stack)}),s.dev&&i.on("fn-err",function(t,n,e){r(e.stack)}),s.dev&&(r("NR AGENT IN DEVELOPMENT MODE"),r("flags: "+a(s,function(t,n){return t}).join(", ")))},{}],2:[function(t,n,e){function r(t,n,e,r,s){try{p?p-=1:o(s||new UncaughtException(t,n,e),!0)}catch(f){try{i("ierr",[f,c.now(),!0])}catch(d){}}return"function"==typeof u&&u.apply(this,a(arguments))}function UncaughtException(t,n,e){this.message=t||"Uncaught error with no additional information",this.sourceURL=n,this.line=e}function o(t,n){var e=n?null:c.now();i("err",[t,e])}var i=t("handle"),a=t(22),s=t("ee"),c=t("loader"),f=t("gos"),u=window.onerror,d=!1,l="nr@seenError",p=0;c.features.err=!0,t(1),window.onerror=r;try{throw new Error}catch(h){"stack"in h&&(t(9),t(8),"addEventListener"in window&&t(5),c.xhrWrappable&&t(10),d=!0)}s.on("fn-start",function(t,n,e){d&&(p+=1)}),s.on("fn-err",function(t,n,e){d&&!e[l]&&(f(e,l,function(){return!0}),this.thrown=!0,o(e))}),s.on("fn-end",function(){d&&!this.thrown&&p>0&&(p-=1)}),s.on("internal-error",function(t){i("ierr",[t,c.now(),!0])})},{}],3:[function(t,n,e){t("loader").features.ins=!0},{}],4:[function(t,n,e){function r(t){}if(window.performance&&window.performance.timing&&window.performance.getEntriesByType){var o=t("ee"),i=t("handle"),a=t(9),s=t(8),c="learResourceTimings",f="addEventListener",u="resourcetimingbufferfull",d="bstResource",l="resource",p="-start",h="-end",m="fn"+p,w="fn"+h,v="bstTimer",g="pushState",y=t("loader");y.features.stn=!0,t(7),"addEventListener"in window&&t(5);var x=NREUM.o.EV;o.on(m,function(t,n){var e=t[0];e instanceof x&&(this.bstStart=y.now())}),o.on(w,function(t,n){var e=t[0];e instanceof x&&i("bst",[e,n,this.bstStart,y.now()])}),a.on(m,function(t,n,e){this.bstStart=y.now(),this.bstType=e}),a.on(w,function(t,n){i(v,[n,this.bstStart,y.now(),this.bstType])}),s.on(m,function(){this.bstStart=y.now()}),s.on(w,function(t,n){i(v,[n,this.bstStart,y.now(),"requestAnimationFrame"])}),o.on(g+p,function(t){this.time=y.now(),this.startPath=location.pathname+location.hash}),o.on(g+h,function(t){i("bstHist",[location.pathname+location.hash,this.startPath,this.time])}),f in window.performance&&(window.performance["c"+c]?window.performance[f](u,function(t){i(d,[window.performance.getEntriesByType(l)]),window.performance["c"+c]()},!1):window.performance[f]("webkit"+u,function(t){i(d,[window.performance.getEntriesByType(l)]),window.performance["webkitC"+c]()},!1)),document[f]("scroll",r,{passive:!0}),document[f]("keypress",r,!1),document[f]("click",r,!1)}},{}],5:[function(t,n,e){function r(t){for(var n=t;n&&!n.hasOwnProperty(u);)n=Object.getPrototypeOf(n);n&&o(n)}function o(t){s.inPlace(t,[u,d],"-",i)}function i(t,n){return t[1]}var a=t("ee").get("events"),s=t("wrap-function")(a,!0),c=t("gos"),f=XMLHttpRequest,u="addEventListener",d="removeEventListener";n.exports=a,"getPrototypeOf"in Object?(r(document),r(window),r(f.prototype)):f.prototype.hasOwnProperty(u)&&(o(window),o(f.prototype)),a.on(u+"-start",function(t,n){var e=t[1],r=c(e,"nr@wrapped",function(){function t(){if("function"==typeof e.handleEvent)return e.handleEvent.apply(e,arguments)}var n={object:t,"function":e}[typeof e];return n?s(n,"fn-",null,n.name||"anonymous"):e});this.wrapped=t[1]=r}),a.on(d+"-start",function(t){t[1]=this.wrapped||t[1]})},{}],6:[function(t,n,e){function r(t,n,e){var r=t[n];"function"==typeof r&&(t[n]=function(){var t=i(arguments),n={};o.emit(e+"before-start",[t],n);var a;n[m]&&n[m].dt&&(a=n[m].dt);var s=r.apply(this,t);return o.emit(e+"start",[t,a],s),s.then(function(t){return o.emit(e+"end",[null,t],s),t},function(t){throw o.emit(e+"end",[t],s),t})})}var o=t("ee").get("fetch"),i=t(22),a=t(21);n.exports=o;var s=window,c="fetch-",f=c+"body-",u=["arrayBuffer","blob","json","text","formData"],d=s.Request,l=s.Response,p=s.fetch,h="prototype",m="nr@context";d&&l&&p&&(a(u,function(t,n){r(d[h],n,f),r(l[h],n,f)}),r(s,"fetch",c),o.on(c+"end",function(t,n){var e=this;if(n){var r=n.headers.get("content-length");null!==r&&(e.rxSize=r),o.emit(c+"done",[null,n],e)}else o.emit(c+"done",[t],e)}))},{}],7:[function(t,n,e){var r=t("ee").get("history"),o=t("wrap-function")(r);n.exports=r;var i=window.history&&window.history.constructor&&window.history.constructor.prototype,a=window.history;i&&i.pushState&&i.replaceState&&(a=i),o.inPlace(a,["pushState","replaceState"],"-")},{}],8:[function(t,n,e){var r=t("ee").get("raf"),o=t("wrap-function")(r),i="equestAnimationFrame";n.exports=r,o.inPlace(window,["r"+i,"mozR"+i,"webkitR"+i,"msR"+i],"raf-"),r.on("raf-start",function(t){t[0]=o(t[0],"fn-")})},{}],9:[function(t,n,e){function r(t,n,e){t[0]=a(t[0],"fn-",null,e)}function o(t,n,e){this.method=e,this.timerDuration=isNaN(t[1])?0:+t[1],t[0]=a(t[0],"fn-",this,e)}var i=t("ee").get("timer"),a=t("wrap-function")(i),s="setTimeout",c="setInterval",f="clearTimeout",u="-start",d="-";n.exports=i,a.inPlace(window,[s,"setImmediate"],s+d),a.inPlace(window,[c],c+d),a.inPlace(window,[f,"clearImmediate"],f+d),i.on(c+u,r),i.on(s+u,o)},{}],10:[function(t,n,e){function r(t,n){d.inPlace(n,["onreadystatechange"],"fn-",s)}function o(){var t=this,n=u.context(t);t.readyState>3&&!n.resolved&&(n.resolved=!0,u.emit("xhr-resolved",[],t)),d.inPlace(t,g,"fn-",s)}function i(t){y.push(t),h&&(b?b.then(a):w?w(a):(E=-E,O.data=E))}function a(){for(var t=0;t<y.length;t++)r([],y[t]);y.length&&(y=[])}function s(t,n){return n}function c(t,n){for(var e in t)n[e]=t[e];return n}t(5);var f=t("ee"),u=f.get("xhr"),d=t("wrap-function")(u),l=NREUM.o,p=l.XHR,h=l.MO,m=l.PR,w=l.SI,v="readystatechange",g=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"],y=[];n.exports=u;var x=window.XMLHttpRequest=function(t){var n=new p(t);try{u.emit("new-xhr",[n],n),n.addEventListener(v,o,!1)}catch(e){try{u.emit("internal-error",[e])}catch(r){}}return n};if(c(p,x),x.prototype=p.prototype,d.inPlace(x.prototype,["open","send"],"-xhr-",s),u.on("send-xhr-start",function(t,n){r(t,n),i(n)}),u.on("open-xhr-start",r),h){var b=m&&m.resolve();if(!w&&!m){var E=1,O=document.createTextNode(E);new h(a).observe(O,{characterData:!0})}}else f.on("fn-end",function(t){t[0]&&t[0].type===v||a()})},{}],11:[function(t,n,e){function r(t){if(!i(t))return null;var n=window.NREUM;if(!n.loader_config)return null;var e=(n.loader_config.accountID||"").toString()||null,r=(n.loader_config.agentID||"").toString()||null,s=(n.loader_config.trustKey||"").toString()||null;if(!e||!r)return null;var c=a.generateCatId(),f=a.generateCatId(),u=Date.now(),d=o(c,f,u,e,r,s);return{header:d,guid:c,traceId:f,timestamp:u}}function o(t,n,e,r,o,i){var a="btoa"in window&&"function"==typeof window.btoa;if(!a)return null;var s={v:[0,1],d:{ty:"Browser",ac:r,ap:o,id:t,tr:n,ti:e}};return i&&r!==i&&(s.d.tk=i),btoa(JSON.stringify(s))}function i(t){var n=!1,e=!1,r={};if("init"in NREUM&&"distributed_tracing"in NREUM.init&&(r=NREUM.init.distributed_tracing,e=!!r.enabled),e)if(t.sameOrigin)n=!0;else if(r.allowed_origins instanceof Array)for(var o=0;o<r.allowed_origins.length;o++){var i=s(r.allowed_origins[o]);if(t.hostname===i.hostname&&t.protocol===i.protocol&&t.port===i.port){n=!0;break}}return e&&n}var a=t(19),s=t(13);n.exports={generateTracePayload:r,shouldGenerateTrace:i}},{}],12:[function(t,n,e){function r(t){var n=this.params,e=this.metrics;if(!this.ended){this.ended=!0;for(var r=0;r<l;r++)t.removeEventListener(d[r],this.listener,!1);n.aborted||(e.duration=a.now()-this.startTime,this.loadCaptureCalled||4!==t.readyState?null==n.status&&(n.status=0):i(this,t),e.cbTime=this.cbTime,u.emit("xhr-done",[t],t),s("xhr",[n,e,this.startTime]))}}function o(t,n){var e=c(n),r=t.params;r.host=e.hostname+":"+e.port,r.pathname=e.pathname,t.parsedOrigin=c(n),t.sameOrigin=t.parsedOrigin.sameOrigin}function i(t,n){t.params.status=n.status;var e=w(n,t.lastSize);if(e&&(t.metrics.rxSize=e),t.sameOrigin){var r=n.getResponseHeader("X-NewRelic-App-Data");r&&(t.params.cat=r.split(", ").pop())}t.loadCaptureCalled=!0}var a=t("loader");if(a.xhrWrappable){var s=t("handle"),c=t(13),f=t(11).generateTracePayload,u=t("ee"),d=["load","error","abort","timeout"],l=d.length,p=t("id"),h=t(17),m=t(16),w=t(14),v=window.XMLHttpRequest;a.features.xhr=!0,t(10),t(6),u.on("new-xhr",function(t){var n=this;n.totalCbs=0,n.called=0,n.cbTime=0,n.end=r,n.ended=!1,n.xhrGuids={},n.lastSize=null,n.loadCaptureCalled=!1,t.addEventListener("load",function(e){i(n,t)},!1),h&&(h>34||h<10)||window.opera||t.addEventListener("progress",function(t){n.lastSize=t.loaded},!1)}),u.on("open-xhr-start",function(t){this.params={method:t[0]},o(this,t[1]),this.metrics={}}),u.on("open-xhr-end",function(t,n){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&n.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid);var e=f(this.parsedOrigin);e&&e.header&&(n.setRequestHeader("newrelic",e.header),this.dt=e)}),u.on("send-xhr-start",function(t,n){var e=this.metrics,r=t[0],o=this;if(e&&r){var i=m(r);i&&(e.txSize=i)}this.startTime=a.now(),this.listener=function(t){try{"abort"!==t.type||o.loadCaptureCalled||(o.params.aborted=!0),("load"!==t.type||o.called===o.totalCbs&&(o.onloadCalled||"function"!=typeof n.onload))&&o.end(n)}catch(e){try{u.emit("internal-error",[e])}catch(r){}}};for(var s=0;s<l;s++)n.addEventListener(d[s],this.listener,!1)}),u.on("xhr-cb-time",function(t,n,e){this.cbTime+=t,n?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof e.onload||this.end(e)}),u.on("xhr-load-added",function(t,n){var e=""+p(t)+!!n;this.xhrGuids&&!this.xhrGuids[e]&&(this.xhrGuids[e]=!0,this.totalCbs+=1)}),u.on("xhr-load-removed",function(t,n){var e=""+p(t)+!!n;this.xhrGuids&&this.xhrGuids[e]&&(delete this.xhrGuids[e],this.totalCbs-=1)}),u.on("addEventListener-end",function(t,n){n instanceof v&&"load"===t[0]&&u.emit("xhr-load-added",[t[1],t[2]],n)}),u.on("removeEventListener-end",function(t,n){n instanceof v&&"load"===t[0]&&u.emit("xhr-load-removed",[t[1],t[2]],n)}),u.on("fn-start",function(t,n,e){n instanceof v&&("onload"===e&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=a.now()))}),u.on("fn-end",function(t,n){this.xhrCbStart&&u.emit("xhr-cb-time",[a.now()-this.xhrCbStart,this.onload,n],n)}),u.on("fetch-before-start",function(t){var n,e=t[1]||{};"string"==typeof t[0]?n=t[0]:t[0]&&t[0].url&&(n=t[0].url),n&&(this.parsedOrigin=c(n),this.sameOrigin=this.parsedOrigin.sameOrigin);var r=f(this.parsedOrigin);if(r&&r.header){var o=r.header;if("string"==typeof t[0]){var i={};for(var a in e)i[a]=e[a];i.headers=new Headers(e.headers||{}),i.headers.set("newrelic",o),this.dt=r,t.length>1?t[1]=i:t.push(i)}else t[0]&&t[0].headers&&(t[0].headers.append("newrelic",o),this.dt=r)}})}},{}],13:[function(t,n,e){var r={};n.exports=function(t){if(t in r)return r[t];var n=document.createElement("a"),e=window.location,o={};n.href=t,o.port=n.port;var i=n.href.split("://");!o.port&&i[1]&&(o.port=i[1].split("/")[0].split("@").pop().split(":")[1]),o.port&&"0"!==o.port||(o.port="https"===i[0]?"443":"80"),o.hostname=n.hostname||e.hostname,o.pathname=n.pathname,o.protocol=i[0],"/"!==o.pathname.charAt(0)&&(o.pathname="/"+o.pathname);var a=!n.protocol||":"===n.protocol||n.protocol===e.protocol,s=n.hostname===document.domain&&n.port===e.port;return o.sameOrigin=a&&(!n.hostname||s),"/"===o.pathname&&(r[t]=o),o}},{}],14:[function(t,n,e){function r(t,n){var e=t.responseType;return"json"===e&&null!==n?n:"arraybuffer"===e||"blob"===e||"json"===e?o(t.response):"text"===e||""===e||void 0===e?o(t.responseText):void 0}var o=t(16);n.exports=r},{}],15:[function(t,n,e){function r(){}function o(t,n,e){return function(){return i(t,[f.now()].concat(s(arguments)),n?null:this,e),n?void 0:this}}var i=t("handle"),a=t(21),s=t(22),c=t("ee").get("tracer"),f=t("loader"),u=NREUM;"undefined"==typeof window.newrelic&&(newrelic=u);var d=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],l="api-",p=l+"ixn-";a(d,function(t,n){u[n]=o(l+n,!0,"api")}),u.addPageAction=o(l+"addPageAction",!0),u.setCurrentRouteName=o(l+"routeName",!0),n.exports=newrelic,u.interaction=function(){return(new r).get()};var h=r.prototype={createTracer:function(t,n){var e={},r=this,o="function"==typeof n;return i(p+"tracer",[f.now(),t,e],r),function(){if(c.emit((o?"":"no-")+"fn-start",[f.now(),r,o],e),o)try{return n.apply(this,arguments)}catch(t){throw c.emit("fn-err",[arguments,this,t],e),t}finally{c.emit("fn-end",[f.now()],e)}}}};a("actionText,setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(t,n){h[n]=o(p+n)}),newrelic.noticeError=function(t,n){"string"==typeof t&&(t=new Error(t)),i("err",[t,f.now(),!1,n])}},{}],16:[function(t,n,e){n.exports=function(t){if("string"==typeof t&&t.length)return t.length;if("object"==typeof t){if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if(!("undefined"!=typeof FormData&&t instanceof FormData))try{return JSON.stringify(t).length}catch(n){return}}}},{}],17:[function(t,n,e){var r=0,o=navigator.userAgent.match(/Firefox[\/\s](\d+\.\d+)/);o&&(r=+o[1]),n.exports=r},{}],18:[function(t,n,e){function r(t,n){var e=t.getEntries();e.forEach(function(t){"first-paint"===t.name?c("timing",["fp",Math.floor(t.startTime)]):"first-contentful-paint"===t.name&&c("timing",["fcp",Math.floor(t.startTime)])})}function o(t,n){var e=t.getEntries();e.length>0&&c("lcp",[e[e.length-1]])}function i(t){if(t instanceof u&&!l){var n,e=Math.round(t.timeStamp);n=e>1e12?Date.now()-e:f.now()-e,l=!0,c("timing",["fi",e,{type:t.type,fid:n}])}}if(!("init"in NREUM&&"page_view_timing"in NREUM.init&&"enabled"in NREUM.init.page_view_timing&&NREUM.init.page_view_timing.enabled===!1)){var a,s,c=t("handle"),f=t("loader"),u=NREUM.o.EV;if("PerformanceObserver"in window&&"function"==typeof window.PerformanceObserver){a=new PerformanceObserver(r),s=new PerformanceObserver(o);try{a.observe({entryTypes:["paint"]}),s.observe({entryTypes:["largest-contentful-paint"]})}catch(d){}}if("addEventListener"in document){var l=!1,p=["click","keydown","mousedown","pointerdown","touchstart"];p.forEach(function(t){document.addEventListener(t,i,!1)})}}},{}],19:[function(t,n,e){function r(){function t(){return n?15&n[e++]:16*Math.random()|0}var n=null,e=0,r=window.crypto||window.msCrypto;r&&r.getRandomValues&&(n=r.getRandomValues(new Uint8Array(31)));for(var o,i="xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx",a="",s=0;s<i.length;s++)o=i[s],"x"===o?a+=t().toString(16):"y"===o?(o=3&t()|8,a+=o.toString(16)):a+=o;return a}function o(){function t(){return n?15&n[e++]:16*Math.random()|0}var n=null,e=0,r=window.crypto||window.msCrypto;r&&r.getRandomValues&&Uint8Array&&(n=r.getRandomValues(new Uint8Array(31)));for(var o=[],i=0;i<16;i++)o.push(t().toString(16));return o.join("")}n.exports={generateUuid:r,generateCatId:o}},{}],20:[function(t,n,e){function r(t,n){if(!o)return!1;if(t!==o)return!1;if(!n)return!0;if(!i)return!1;for(var e=i.split("."),r=n.split("."),a=0;a<r.length;a++)if(r[a]!==e[a])return!1;return!0}var o=null,i=null,a=/Version\/(\S+)\s+Safari/;if(navigator.userAgent){var s=navigator.userAgent,c=s.match(a);c&&s.indexOf("Chrome")===-1&&s.indexOf("Chromium")===-1&&(o="Safari",i=c[1])}n.exports={agent:o,version:i,match:r}},{}],21:[function(t,n,e){function r(t,n){var e=[],r="",i=0;for(r in t)o.call(t,r)&&(e[i]=n(r,t[r]),i+=1);return e}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],22:[function(t,n,e){function r(t,n,e){n||(n=0),"undefined"==typeof e&&(e=t?t.length:0);for(var r=-1,o=e-n||0,i=Array(o<0?0:o);++r<o;)i[r]=t[n+r];return i}n.exports=r},{}],23:[function(t,n,e){n.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(t,n,e){function r(){}function o(t){function n(t){return t&&t instanceof r?t:t?c(t,s,i):i()}function e(e,r,o,i){if(!l.aborted||i){t&&t(e,r,o);for(var a=n(o),s=m(e),c=s.length,f=0;f<c;f++)s[f].apply(a,r);var d=u[y[e]];return d&&d.push([x,e,r,a]),a}}function p(t,n){g[t]=m(t).concat(n)}function h(t,n){var e=g[t];if(e)for(var r=0;r<e.length;r++)e[r]===n&&e.splice(r,1)}function m(t){return g[t]||[]}function w(t){return d[t]=d[t]||o(e)}function v(t,n){f(t,function(t,e){n=n||"feature",y[e]=n,n in u||(u[n]=[])})}var g={},y={},x={on:p,addEventListener:p,removeEventListener:h,emit:e,get:w,listeners:m,context:n,buffer:v,abort:a,aborted:!1};return x}function i(){return new r}function a(){(u.api||u.feature)&&(l.aborted=!0,u=l.backlog={})}var s="nr@context",c=t("gos"),f=t(21),u={},d={},l=n.exports=o();l.backlog=u},{}],gos:[function(t,n,e){function r(t,n,e){if(o.call(t,n))return t[n];var r=e();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,n,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return t[n]=r,r}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],handle:[function(t,n,e){function r(t,n,e,r){o.buffer([t],r),o.emit(t,n,e)}var o=t("ee").get("handle");n.exports=r,r.ee=o},{}],id:[function(t,n,e){function r(t){var n=typeof t;return!t||"object"!==n&&"function"!==n?-1:t===window?0:a(t,i,function(){return o++})}var o=1,i="nr@id",a=t("gos");n.exports=r},{}],loader:[function(t,n,e){function r(){if(!E++){var t=b.info=NREUM.info,n=p.getElementsByTagName("script")[0];if(setTimeout(u.abort,3e4),!(t&&t.licenseKey&&t.applicationID&&n))return u.abort();f(y,function(n,e){t[n]||(t[n]=e)}),c("mark",["onload",a()+b.offset],null,"api");var e=p.createElement("script");e.src="https://"+t.agent,n.parentNode.insertBefore(e,n)}}function o(){"complete"===p.readyState&&i()}function i(){c("mark",["domContent",a()+b.offset],null,"api")}function a(){return O.exists&&performance.now?Math.round(performance.now()):(s=Math.max((new Date).getTime(),s))-b.offset}var s=(new Date).getTime(),c=t("handle"),f=t(21),u=t("ee"),d=t(20),l=window,p=l.document,h="addEventListener",m="attachEvent",w=l.XMLHttpRequest,v=w&&w.prototype;NREUM.o={ST:setTimeout,SI:l.setImmediate,CT:clearTimeout,XHR:w,REQ:l.Request,EV:l.Event,PR:l.Promise,MO:l.MutationObserver};var g=""+location,y={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1169.min.js"},x=w&&v&&v[h]&&!/CriOS/.test(navigator.userAgent),b=n.exports={offset:s,now:a,origin:g,features:{},xhrWrappable:x,userAgent:d};t(15),t(18),p[h]?(p[h]("DOMContentLoaded",i,!1),l[h]("load",r,!1)):(p[m]("onreadystatechange",o),l[m]("onload",r)),c("mark",["firstbyte",s],null,"api");var E=0,O=t(23)},{}],"wrap-function":[function(t,n,e){function r(t){return!(t&&t instanceof Function&&t.apply&&!t[a])}var o=t("ee"),i=t(22),a="nr@original",s=Object.prototype.hasOwnProperty,c=!1;n.exports=function(t,n){function e(t,n,e,o){function nrWrapper(){var r,a,s,c;try{a=this,r=i(arguments),s="function"==typeof e?e(r,a):e||{}}catch(f){l([f,"",[r,a,o],s])}u(n+"start",[r,a,o],s);try{return c=t.apply(a,r)}catch(d){throw u(n+"err",[r,a,d],s),d}finally{u(n+"end",[r,a,c],s)}}return r(t)?t:(n||(n=""),nrWrapper[a]=t,d(t,nrWrapper),nrWrapper)}function f(t,n,o,i){o||(o="");var a,s,c,f="-"===o.charAt(0);for(c=0;c<n.length;c++)s=n[c],a=t[s],r(a)||(t[s]=e(a,f?s+o:o,i,s))}function u(e,r,o){if(!c||n){var i=c;c=!0;try{t.emit(e,r,o,n)}catch(a){l([a,e,r,o])}c=i}}function d(t,n){if(Object.defineProperty&&Object.keys)try{var e=Object.keys(t);return e.forEach(function(e){Object.defineProperty(n,e,{get:function(){return t[e]},set:function(n){return t[e]=n,n}})}),n}catch(r){l([r])}for(var o in t)s.call(t,o)&&(n[o]=t[o]);return n}function l(n){try{t.emit("internal-error",n)}catch(e){}}return t||(t=o),e.inPlace=f,e.flag=a,e}},{}]},{},["loader",2,12,4,3]);</script>
+    <meta name="keywords" content="fanfiction, transformative works, otw, fair use, archive"/>
+    <meta name="language" content="en-US"/>
+    <meta name="subject" content="fandom"/>
+    <meta name="description" content="An Archive of Our Own, a project of the
+    Organization for Transformative Works"/>
+    <meta name="distribution" content="GLOBAL"/>
+    <meta name="classification" content="transformative works"/>
+    <meta name="author" content="Organization for Transformative Works"/>
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>  
+    <title>
+          jeza
+        |
+        Archive of Our Own
+    </title>
+
+        <link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/skins/skin_873_archive_2_0/1_site_screen_.css"/>
+<link rel="stylesheet" type="text/css" media="only screen and (max-width: 62em), handheld" href="/stylesheets/skins/skin_873_archive_2_0/4_site_midsize.handheld_.css"/>
+<link rel="stylesheet" type="text/css" media="only screen and (max-width: 42em), handheld" href="/stylesheets/skins/skin_873_archive_2_0/5_site_narrow.handheld_.css"/>
+<link rel="stylesheet" type="text/css" media="speech" href="/stylesheets/skins/skin_873_archive_2_0/6_site_speech_.css"/>
+<link rel="stylesheet" type="text/css" media="print" href="/stylesheets/skins/skin_873_archive_2_0/7_site_print_.css"/>
+<!--[if IE 8]><link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/skins/skin_873_archive_2_0/8_site_screen_IE8_or_lower.css" /><![endif]-->
+<!--[if IE 5]><link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/skins/skin_873_archive_2_0/9_site_screen_IE5.css" /><![endif]-->
+<!--[if IE 6]><link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/skins/skin_873_archive_2_0/10_site_screen_IE6.css" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/skins/skin_873_archive_2_0/11_site_screen_IE7.css" /><![endif]-->
+
+
+<!--sandbox for developers	-->
+<link rel="stylesheet" media="screen" href="/stylesheets/sandbox.css"/>
+<script src="/javascripts/livevalidation_standalone.js"></script>
+
+<meta name="csrf-param" content="authenticity_token"/>
+<meta name="csrf-token" content="rFcg5970twij3jxTyOzANe9RiTE76YoxvFHx5ariTsyIh9zp1cJ35PwXOp7yIfkwV//a7EXiaPMXg6kpVNNoAA=="/>
+
+    
+  </head>
+
+  <body class="logged-in">
+    <div id="outer" class="wrapper">
+      <ul id="skiplinks"><li><a href="#main">Main Content</a></li></ul>
+      <!-- BEGIN BETA CAVEATS! -->
+<noscript>
+  <p id="javascript-warning">
+    While we&#39;ve done our best to make the core functionality of this site accessible without javascript, it will work better with it enabled. Please consider turning it on!
+  </p>
+</noscript>
+<!-- END BETA CAVEATS! --> 
+
+<!-- BEGIN header -->
+
+<div id="header" class="region">
+
+  <h1 class="heading">
+    <a href="/"><span>Archive of Our Own</span><sup> beta</sup><img alt="Archive of Our Own" class="logo" src="/images/ao3_logos/logo_42.png"/></a> 
+  </h1>
+
+    <div id="greeting">
+    <h3 class="landmark heading">User Navigation</h3>
+    <ul class="user navigation actions" role="navigation">
+      <li class="dropdown">
+        <a href="/users/jeza">Hi, jeza!</a>
+        <ul class="menu" role="menu">
+          <li><span class="current">My Dashboard</span></li>
+            <li><a href="/users/jeza/bookmarks">My Bookmarks</a></li>
+            <li><a href="/users/jeza/readings">My History</a></li>
+          <li><a href="/users/jeza/preferences">My Preferences</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+      	<a href="/works/new">Post</a>
+      	<ul class="menu" role="menu">
+          <li><a href="/works/new">New Work</a></li>
+          <li><a href="/works/new?import=true">Import Work</a></li>
+      	</ul>
+      </li>
+      <li><a href="/users/logout">Log Out</a></li>
+    </ul>
+
+  <p class="icon"><a href="/users/jeza"><img alt="" class="icon" src="/images/skins/iconsets/default/icon_user.png"/></a></p>
+</div>
+
+
+  <h3 class="landmark heading">Site Navigation</h3>
+  <ul class="primary navigation actions" role="navigation">
+    <li class="dropdown">
+      <a href="/menu/fandoms">Fandoms</a>
+      <ul class="menu" role="menu">
+  <li><a href="/media">All Fandoms</a></li>
+        <li id="medium_5"><a href="/media/Anime%20*a*%20Manga/fandoms">Anime &amp; Manga</a></li>
+        <li id="medium_3"><a href="/media/Books%20*a*%20Literature/fandoms">Books &amp; Literature</a></li>
+        <li id="medium_4"><a href="/media/Cartoons%20*a*%20Comics%20*a*%20Graphic%20Novels/fandoms">Cartoons &amp; Comics &amp; Graphic Novels</a></li>
+        <li id="medium_7"><a href="/media/Celebrities%20*a*%20Real%20People/fandoms">Celebrities &amp; Real People</a></li>
+        <li id="medium_2"><a href="/media/Movies/fandoms">Movies</a></li>
+        <li id="medium_6"><a href="/media/Music%20*a*%20Bands/fandoms">Music &amp; Bands</a></li>
+        <li id="medium_8"><a href="/media/Other%20Media/fandoms">Other Media</a></li>
+        <li id="medium_30198"><a href="/media/Theater/fandoms">Theater</a></li>
+        <li id="medium_1"><a href="/media/TV%20Shows/fandoms">TV Shows</a></li>
+        <li id="medium_476"><a href="/media/Video%20Games/fandoms">Video Games</a></li>
+        <li id="medium_9971"><a href="/media/Uncategorized%20Fandoms/fandoms">Uncategorized Fandoms</a></li>
+</ul>
+
+    </li>
+    <li class="dropdown">
+      <a href="/menu/browse">Browse</a>
+      <ul class="menu" role="menu">
+  <li><a href="/works">Works</a></li>
+  <li><a href="/bookmarks">Bookmarks</a></li>
+  <li><a href="/tags">Tags</a></li>
+  <li><a href="/collections">Collections</a></li>
+</ul>
+
+    </li>
+    <li class="dropdown">
+      <a href="/menu/search">Search</a>
+      <ul class="menu" role="menu">
+  <li><a href="/works/search">Works</a></li>
+  <li><a href="/bookmarks/search">Bookmarks</a></li>
+  <li><a href="/tags/search">Tags</a></li>
+  <li><a href="/people/search">People</a></li>
+</ul>
+
+    </li>
+    <li class="dropdown">
+      <a href="/menu/about">About</a>
+      <ul class="menu" role="menu">
+  <li><a href="/about">About Us</a></li>
+  <li><a href="/admin_posts">News</a></li>
+  <li><a href="/faq">FAQ</a></li>
+  <li><a href="/wrangling_guidelines">Wrangling Guidelines</a></li>
+  <li><a href="/donate">Donate or Volunteer</a></li>
+</ul>
+
+    </li>
+	  <li class="search"><form class="search" id="search" action="/works/search" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="&#x2713;"/>
+  <fieldset>
+    <legend>Search Works</legend>
+    <p>
+      <label class="landmark" for="site_search">Work Search:</label>
+      <input class="text" id="site_search" aria-describedby="site_search_tooltip" type="text" name="work_search[query]"/>
+      <span class="tip" role="tooltip" id="site_search_tooltip">tip: katekyou &quot;alternate universe&quot; sort:&gt;words</span>
+      <span class="submit actions"><input type="submit" value="Search" class="button"/></span>
+    </p>
+  </fieldset>
+</form></li>
+  </ul>
+
+
+
+  <div class="clear"></div>
+
+</div>
+
+
+
+<!-- END header -->
+
+      <div id="inner" class="wrapper">
+        <!-- BEGIN sidebar -->
+          <div id="dashboard" class="region own" role="navigation region">
+<h4 class="landmark heading">Choices</h4>
+<ul class="navigation actions">
+  <li><span class="current">Dashboard</span></li>
+  <li><a href="/users/jeza/profile">Profile</a></li>
+
+    <li><a href="/users/jeza/preferences">Preferences</a></li>
+    <li><a href="/users/jeza/skins">Skins</a></li>
+</ul>
+
+
+<h4 class="landmark heading">Pitch</h4>
+<ul class="navigation actions">
+	<li><a href="/users/jeza/works">Works (0)</a></li>
+	  <li><a href="/users/jeza/works/drafts">Drafts (0)</a></li>
+	<li><a href="/users/jeza/series">Series (0)</a></li>
+
+	  <li><a href="/users/jeza/bookmarks">Bookmarks (1)</a></li>
+
+  <li><a href="/users/jeza/collections">Collections (0)</a></li>
+</ul>
+
+  <h4 class="landmark heading">Catch</h4>
+  <ul class="navigation actions">
+	  <li><a href="/users/jeza/inbox">Inbox (0)</a></li>
+	  <li><a href="/users/jeza/stats">Statistics</a></li>
+      <li><a href="/users/jeza/readings">History</a></li>
+    <li><a href="/users/jeza/subscriptions">Subscriptions</a></li>
+  </ul>
+
+<h4 class="landmark heading">Switch</h4>
+<ul class="navigation actions">
+    <li><a href="/users/jeza/signups">Sign-ups (0)</a></li>
+    <li><a href="/users/jeza/assignments">Assignments (0)</a></li>
+    <li><a href="/users/jeza/claims">Claims (0)</a></li>
+    <li><a href="/users/jeza/related_works">Related Works (0)</a></li>
+  <li><a href="/users/jeza/gifts">Gifts (0)</a></li>
+</ul>
+
+</div>
+
+        <!-- END sidebar -->
+
+        <!-- BEGIN main -->
+        <div id="main" class="users-show dashboard region" role="main">
+          <div class="flash notice">Successfully logged in. <strong>You'll stay logged in for 2 weeks even if you close your browser, so make sure to log out if you're using a public or shared computer.</strong></div>
+          <div class="flash"></div>
+          
+<div class="user home">
+  <!--Descriptive page name, messages and instructions-->
+<div class="primary header module">
+	<h2 class="heading">
+	  jeza
+	</h2>
+	<p class="icon"><a href="/users/jeza"><img alt="" class="icon" src="/images/skins/iconsets/default/icon_user.png"/></a></p>
+<!--/descriptions-->
+
+  <!--subnav-->
+  <ul class="navigation actions" role="navigation">
+    <li><a href="/works/new">Post New</a></li>
+    <li><a href="/users/jeza/works/show_multiple">Edit Works</a></li>      
+    <li>
+      <form class="ajax-create-destroy" data-create-value="Subscribe" data-destroy-value="Unsubscribe" id="new_subscription" action="/users/jeza/subscriptions" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;"/><input type="hidden" name="authenticity_token" value="bTwVlXaIy+bdDPI8F2dpFyXARQlQkt568LoAPQVSDA9J7Ombfb4LCoLF9PEtqlASnW4W1C6ZPLhbaFjx+2Mqww=="/>
+  <input type="hidden" value="7685596" name="subscription[subscribable_id]" id="subscription_subscribable_id"/>
+  <input type="hidden" value="User" name="subscription[subscribable_type]" id="subscription_subscribable_type"/>
+  <input type="submit" name="commit" value="Subscribe"/>
+</form>
+    </li>
+    <li><a href="/users/jeza/invitations">Invitations</a></li>
+</ul>
+
+  <!--/subnav-->
+
+</div>
+
+  ﻿<!--main content-->
+<!-- expects @fandoms, @works, @series, @bookmarks -->
+              
+  
+  
+  <div class="bookmark listbox group" id="user-bookmarks">
+    <h3 class="heading">Recent bookmarks</h3>
+    <ol class="index group">
+      <li id="bookmark_509793499" class="bookmark blurb group" role="article">
+
+    <!--bookmark icons-->
+    <p class="status" title="7542 Bookmarks">
+       <a class="help symbol question modal" title="Bookmark symbols key" aria-controls="#modal" href="/help/bookmark-symbols-key.html"><span class="rec" title="Rec"><span class="text">Rec</span></span></a>
+      <span class="count"><a href="/works/12006417/bookmarks">*</a></span>
+    </p>
+
+    <!--bookmark item module-->
+      
+
+  <!--title, author, fandom-->
+  <div class="header module">
+
+    <h4 class="heading">
+      <a href="/works/12006417">survival is a talent</a>
+      by
+        
+      <!-- do not cache -->
+      <a rel="author" href="/users/ShanaStoryteller/pseuds/ShanaStoryteller">ShanaStoryteller</a>
+
+
+
+      
+      
+    </h4>
+
+    <h5 class="fandoms heading">
+      <span class="landmark">Fandoms:</span>
+      <a class="tag" href="/tags/Harry%20Potter%20-%20J*d*%20K*d*%20Rowling/works">Harry Potter - J. K. Rowling</a>
+      &nbsp;
+    </h5>
+
+    <!--required tags-->
+    <ul class="required-tags">
+<li> <a class="help symbol question modal" title="Symbols key" aria-controls="#modal" href="/help/symbols-key.html"><span class="rating-teen rating" title="Teen And Up Audiences"><span class="text">Teen And Up Audiences</span></span></a></li>
+<li> <a class="help symbol question modal" title="Symbols key" aria-controls="#modal" href="/help/symbols-key.html"><span class="warning-choosenotto warnings" title="Choose Not To Use Archive Warnings"><span class="text">Choose Not To Use Archive Warnings</span></span></a></li>
+<li> <a class="help symbol question modal" title="Symbols key" aria-controls="#modal" href="/help/symbols-key.html"><span class="category-multi category" title="Gen, M/M"><span class="text">Gen, M/M</span></span></a></li>
+<li> <a class="help symbol question modal" title="Symbols key" aria-controls="#modal" href="/help/symbols-key.html"><span class="complete-no iswip" title="Work in Progress"><span class="text">Work in Progress</span></span></a></li>
+</ul>
+    <p class="datetime">19 May 2020</p>
+  </div>
+
+  <!--warnings again, cast, freeform tags-->
+  <h6 class="landmark heading">Tags</h6>
+  <ul class="tags commas">
+    <li class='warnings'><strong><a class="tag" href="/tags/Choose%20Not%20To%20Use%20Archive%20Warnings/works">Creator Chose Not To Use Archive Warnings</a></strong></li><li class='relationships'><a class="tag" href="/tags/Draco%20Malfoy*s*Harry%20Potter/works">Draco Malfoy/Harry Potter</a></li><li class='characters'><a class="tag" href="/tags/Harry%20Potter/works">Harry Potter</a></li> <li class='characters'><a class="tag" href="/tags/Draco%20Malfoy/works">Draco Malfoy</a></li> <li class='characters'><a class="tag" href="/tags/Ron%20Weasley/works">Ron Weasley</a></li> <li class='characters'><a class="tag" href="/tags/Hermione%20Granger/works">Hermione Granger</a></li> <li class='characters'><a class="tag" href="/tags/Blaise%20Zabini/works">Blaise Zabini</a></li> <li class='characters'><a class="tag" href="/tags/Millicent%20Bulstrode/works">Millicent Bulstrode</a></li> <li class='characters'><a class="tag" href="/tags/Lucius%20Malfoy/works">Lucius Malfoy</a></li> <li class='characters'><a class="tag" href="/tags/Narcissa%20Black%20Malfoy/works">Narcissa Black Malfoy</a></li> <li class='characters'><a class="tag" href="/tags/Ginny%20Weasley/works">Ginny Weasley</a></li> <li class='characters'><a class="tag" href="/tags/Remus%20Lupin/works">Remus Lupin</a></li> <li class='characters'><a class="tag" href="/tags/Sirius%20Black/works">Sirius Black</a></li><li class='freeforms'><a class="tag" href="/tags/Soulmate%20AU/works">Soulmate AU</a></li> <li class='freeforms'><a class="tag" href="/tags/Indian%20Harry%20Potter/works">Indian Harry Potter</a></li> <li class='freeforms'><a class="tag" href="/tags/Black%20Hermione%20Granger/works">Black Hermione Granger</a></li> <li class='freeforms'><a class="tag" href="/tags/canon*q*%20i%20don&#39;t%20know%20her/works">canon? i don&#39;t know her</a></li> <li class='freeforms'><a class="tag" href="/tags/Slow%20Build/works">Slow Build</a></li> <li class='freeforms'><a class="tag" href="/tags/Lucius%20Malfoy%20is%20a%20bad%20person%20but%20a%20good%20father/works">Lucius Malfoy is a bad person but a good father</a></li> <li class='freeforms'><a class="tag" href="/tags/Parselmouth%20Harry%20Potter/works">Parselmouth Harry Potter</a></li> <li class='freeforms'><a class="tag" href="/tags/Smart%20Draco%20Malfoy/works">Smart Draco Malfoy</a></li> <li class='freeforms'><a class="tag" href="/tags/I&#39;m%20offended%20that&#39;s%20a%20tag%20OF%20COURSE%20he&#39;s%20smart/works">I&#39;m offended that&#39;s a tag OF COURSE he&#39;s smart</a></li> <li class='freeforms'><a class="tag" href="/tags/sometimes%20bad%20things%20happen/works">sometimes bad things happen</a></li> <li class='freeforms'><a class="tag" href="/tags/but%20this%20fic%20isn&#39;t%20out%20to%20hurt%20you/works">but this fic isn&#39;t out to hurt you</a></li> <li class='freeforms'><a class="tag" href="/tags/Secret%20Relationship/works">Secret Relationship</a></li> <li class='freeforms'><a class="tag" href="/tags/Slytherins%20and%20Gryffindors%20being%20reluctant%20friends/works">Slytherins and Gryffindors being reluctant friends</a></li> <li class='freeforms'><a class="tag" href="/tags/Plotty/works">Plotty</a></li> <li class='freeforms'><a class="tag" href="/tags/suprising%20lack%20of%20focus%20on%20soulmates%20for%20a%20soulmate%20au/works">suprising lack of focus on soulmates for a soulmate au</a></li>
+  </ul>
+
+  <!--summary-->
+    <h6 class="landmark heading">Summary</h6>
+    <blockquote class="userstuff summary">
+      <p>In the middle of their second year, Draco and Harry discover they're soulmates and do their best to keep it a secret from everyone. </p><p>Their best isn't perfect. </p><p>~</p><p>“Are you trying to get killed, Potter?” Malfoy drawls, stalking forward. Quick as a serpent himself, he reaches out and grabs the snake just below the head. It thrashes in his grip, but is no longer able to bite anyone. “This is a poisonous snake, and I doubt anyone brought a bezoar with them.” </p><p>Harry glares. He opens his mouth, and feels the beginning the snake’s language pass his lips, and this isn’t what he wants, what’s the point of insulting Malfoy if he can’t understand him – </p><p>Malfoy’s eyes widen. He slaps his hand over Harry’s mouth, “Potter, what the hell–”</p><p>~</p><p>(Now with a <a href="http://tvtropes.org/pmwiki/pmwiki.php/Fanfic/SurvivalIsATalent" rel="nofollow">TV Tropes page</a>!)</p>
+    </blockquote>
+
+
+  <!--stats-->
+
+  <dl class="stats">
+      <dt class="language">Language:</dt>
+      <dd class="language">English</dd>
+    <dt class="words">Words:</dt>
+    <dd class="words">353,015</dd>
+    <dt class="chapters">Chapters:</dt>
+    <dd class="chapters"><a href="/works/12006417/chapters/58483792">22</a>/?</dd>
+
+
+
+    <dt class="comments">Comments:</dt>
+    <dd class="comments"><a href="/works/12006417?show_comments=true&amp;view_full_work=true#comments">7424</a></dd>
+    <dt class="kudos">Kudos:</dt>
+    <dd class="kudos"><a href="/works/12006417?view_full_work=true#comments">23369</a></dd>
+    <dt class="bookmarks">Bookmarks:</dt>
+    <dd class="bookmarks"><a href="/works/12006417/bookmarks">7542</a></dd>
+
+  <dt class="hits">Hits:</dt>
+  <dd class="hits">465299</dd>
+
+  </dl>
+
+
+
+
+    <!--actions-->
+      <ul class="actions" role="navigation">
+
+            <li id="recent_link_work_509793499" style="display: none;" class="showme">
+              <a class="actions" data-remote="true" href="/bookmarks/fetch_recent/509793499">Show Most Recent Bookmarks</a>
+            </li>
+      </ul>
+
+    <div class="new dynamic" id="bookmark_form_placement_for_12006417"></div>
+
+  <div class="own user module group">
+    <!--bookmarker, time-->
+    <h5 class="byline heading">
+      Bookmarked by <a href="/users/jeza/pseuds/jeza/bookmarks">jeza</a>
+    </h5>
+    <p class="datetime">16 Jun 2020</p>
+
+    <!--meta-->
+
+
+    <!--notes-->
+
+  <!--navigation and actions-->
+    <ul class="actions" role="menu">
+  <li><a id="bookmark_form_trigger_for_12006417" data-remote="true" href="/bookmarks/509793499/edit">Edit</a></li>
+  <li><a data-confirm="Are you sure you want to delete this bookmark?" href="/bookmarks/509793499/confirm_delete">Delete</a></li>
+  <li id="add_collection_link"><a href="/bookmarks/509793499/collection_items/new">Add To Collection</a></li>
+    <li class="share hidden">
+      <a class=" modal" title="Share Bookmark" aria-controls="#modal" href="#share_509793499">Share</a>
+      <div id="share_509793499">
+
+  <p class="note">Copy and paste the following code to link back to this work (<kbd>CTRL A</kbd>/<kbd>CMD A</kbd> will select all), or use the Tweet or Tumblr links to share the work on your Twitter or Tumblr account.</p>
+  
+  <p>
+    <textarea cols="50" rows="4" id="embed_code_509793499">&lt;a href=&quot;https://archiveofourown.org/works/12006417&quot;&gt;&lt;strong&gt;survival is a talent&lt;/strong&gt;&lt;/a&gt; (353015 words) by &lt;a href=&quot;https://archiveofourown.org/users/ShanaStoryteller&quot;&gt;&lt;strong&gt;ShanaStoryteller&lt;/strong&gt;&lt;/a&gt;&lt;br /&gt;Chapters: 22/?&lt;br /&gt;Fandom: &lt;a href=&quot;https://archiveofourown.org/tags/Harry%20Potter%20-%20J*d*%20K*d*%20Rowling&quot;&gt;Harry Potter - J. K. Rowling&lt;/a&gt;&lt;br /&gt;Rating: Teen And Up Audiences&lt;br /&gt;Warnings: Creator Chose Not To Use Archive Warnings&lt;br /&gt;Relationships: Draco Malfoy/Harry Potter&lt;br /&gt;Characters: Harry Potter, Draco Malfoy, Ron Weasley, Hermione Granger, Blaise Zabini, Millicent Bulstrode, Lucius Malfoy, Narcissa Black Malfoy, Ginny Weasley, Remus Lupin, Sirius Black&lt;br /&gt;Additional Tags: Soulmate AU, Indian Harry Potter, Black Hermione Granger, canon? i don&#39;t know her, Slow Build, Lucius Malfoy is a bad person but a good father, Parselmouth Harry Potter, Smart Draco Malfoy, I&#39;m offended that&#39;s a tag OF COURSE he&#39;s smart, sometimes bad things happen, but this fic isn&#39;t out to hurt you, Secret Relationship, Slytherins and Gryffindors being reluctant friends, Plotty, suprising lack of focus on soulmates for a soulmate au&lt;br /&gt;Summary: &lt;p&gt;In the middle of their second year, Draco and Harry discover they&#39;re soulmates and do their best to keep it a secret from everyone. &lt;/p&gt;&lt;p&gt;Their best isn&#39;t perfect. &lt;/p&gt;&lt;p&gt;~&lt;/p&gt;&lt;p&gt;“Are you trying to get killed, Potter?” Malfoy drawls, stalking forward. Quick as a serpent himself, he reaches out and grabs the snake just below the head. It thrashes in his grip, but is no longer able to bite anyone. “This is a poisonous snake, and I doubt anyone brought a bezoar with them.” &lt;/p&gt;&lt;p&gt;Harry glares. He opens his mouth, and feels the beginning the snake’s language pass his lips, and this isn’t what he wants, what’s the point of insulting Malfoy if he can’t understand him – &lt;/p&gt;&lt;p&gt;Malfoy’s eyes widen. He slaps his hand over Harry’s mouth, “Potter, what the hell–”&lt;/p&gt;&lt;p&gt;~&lt;/p&gt;&lt;p&gt;(Now with a &lt;a href=&quot;http://tvtropes.org/pmwiki/pmwiki.php/Fanfic/SurvivalIsATalent&quot; rel=&quot;nofollow&quot;&gt;TV Tropes page&lt;/a&gt;!)&lt;/p&gt;</textarea>
+  </p>
+  
+  <ul>
+    
+    <li class="twitter">
+      <a href="http://twitter.com/share" class="twitter-share-button" data-size="large" data-via="ao3org" data-text="Bookmark of survival is a talent by ShanaStoryteller - Harry Potter - J. K. Rowling" data-url="https://archiveofourown.org/bookmarks/509793499">
+        Tweet
+      </a>
+    </li>
+      
+    <li>
+      <a href="http://tumblr.com/widgets/share/tool?canonicalUrl=https%3A%2F%2Farchiveofourown.org%2Fworks%2F12006417&title=survival%20is%20a%20talent%20%28353015%20words%29%20by%20ShanaStoryteller%20%5BAO3%5D&caption=Chapters%3A%2022%2F%3F%3Cbr%20%2F%3EFandom%3A%20%3Ca%20href%3D%22https%3A%2F%2Farchiveofourown.org%2Ftags%2FHarry%2520Potter%2520-%2520J%2Ad%2A%2520K%2Ad%2A%2520Rowling%22%3EHarry%20Potter%20-%20J.%20K.%20Rowling%3C%2Fa%3E%3Cbr%20%2F%3ERating%3A%20Teen%20And%20Up%20Audiences%3Cbr%20%2F%3EWarnings%3A%20Creator%20Chose%20Not%20To%20Use%20Archive%20Warnings%3Cbr%20%2F%3ERelationships%3A%20Draco%20Malfoy%2FHarry%20Potter%3Cbr%20%2F%3ECharacters%3A%20Harry%20Potter%2C%20Draco%20Malfoy%2C%20Ron%20Weasley%2C%20Hermione%20Granger%2C%20Blaise%20Zabini%2C%20Millicent%20Bulstrode%2C%20Lucius%20Malfoy%2C%20Narcissa%20Black%20Malfoy%2C%20Ginny%20Weasley%2C%20Remus%20Lupin%2C%20Sirius%20Black%3Cbr%20%2F%3EAdditional%20Tags%3A%20Soulmate%20AU%2C%20Indian%20Harry%20Potter%2C%20Black%20Hermione%20Granger%2C%20canon%3F%20i%20don%27t%20know%20her%2C%20Slow%20Build%2C%20Lucius%20Malfoy%20is%20a%20bad%20person%20but%20a%20good%20father%2C%20Parselmouth%20Harry%20Potter%2C%20Smart%20Draco%20Malfoy%2C%20I%27m%20offended%20that%27s%20a%20tag%20OF%20COURSE%20he%27s%20smart%2C%20sometimes%20bad%20things%20happen%2C%20but%20this%20fic%20isn%27t%20out%20to%20hurt%20you%2C%20Secret%20Relationship%2C%20Slytherins%20and%20Gryffindors%20being%20reluctant%20friends%2C%20Plotty%2C%20suprising%20lack%20of%20focus%20on%20soulmates%20for%20a%20soulmate%20au%3Cbr%20%2F%3ESummary%3A%20%3Cp%3EIn%20the%20middle%20of%20their%20second%20year%2C%20Draco%20and%20Harry%20discover%20they%27re%20soulmates%20and%20do%20their%20best%20to%20keep%20it%20a%20secret%20from%20everyone.%20%3C%2Fp%3E%3Cp%3ETheir%20best%20isn%27t%20perfect.%20%3C%2Fp%3E%3Cp%3E~%3C%2Fp%3E%3Cp%3E%E2%80%9CAre%20you%20trying%20to%20get%20killed%2C%20Potter%3F%E2%80%9D%20Malfoy%20drawls%2C%20stalking%20forward.%20Quick%20as%20a%20serpent%20himself%2C%20he%20reaches%20out%20and%20grabs%20the%20snake%20just%20below%20the%20head.%20It%20thrashes%20in%20his%20grip%2C%20but%20is%20no%20longer%20able%20to%20bite%20anyone.%20%E2%80%9CThis%20is%20a%20poisonous%20snake%2C%20and%20I%20doubt%20anyone%20brought%20a%20bezoar%20with%20them.%E2%80%9D%20%3C%2Fp%3E%3Cp%3EHarry%20glares.%20He%20opens%20his%20mouth%2C%20and%20feels%20the%20beginning%20the%20snake%E2%80%99s%20language%20pass%20his%20lips%2C%20and%20this%20isn%E2%80%99t%20what%20he%20wants%2C%20what%E2%80%99s%20the%20point%20of%20insulting%20Malfoy%20if%20he%20can%E2%80%99t%20understand%20him%20%E2%80%93%20%3C%2Fp%3E%3Cp%3EMalfoy%E2%80%99s%20eyes%20widen.%20He%20slaps%20his%20hand%20over%20Harry%E2%80%99s%20mouth%2C%20%E2%80%9CPotter%2C%20what%20the%20hell%E2%80%93%E2%80%9D%3C%2Fp%3E%3Cp%3E~%3C%2Fp%3E%3Cp%3E%28Now%20with%20a%20%3Ca%20href%3D%22http%3A%2F%2Ftvtropes.org%2Fpmwiki%2Fpmwiki.php%2FFanfic%2FSurvivalIsATalent%22%20rel%3D%22nofollow%22%3ETV%20Tropes%20page%3C%2Fa%3E%21%29%3C%2Fp%3E" title="Share on Tumblr" style="display:inline-block; text-indent:-9999px; overflow:hidden; width:81px; height:20px; background:url('//platform.tumblr.com/v1/share_1.png') top left no-repeat transparent; border-bottom: none;" target="_blank">
+        Share on Tumblr
+      </a>
+    </li>
+      
+  </ul>
+  
+</div>
+
+
+    </li>
+</ul>
+
+</div>
+
+
+  <div class="recent dynamic" id="recent_work_509793499" style="display: none;"></div>
+
+
+</li>
+
+    </ol>
+  </div>
+
+<!--/content-->
+
+</div> 
+
+
+          <div class="clear"><!--presentational--></div>
+        </div>
+        <!-- END main -->
+      </div>
+      <!-- BEGIN footer -->
+<div id="footer" role="contentinfo" class="region">
+	<h3 class="landmark heading">Footer</h3>
+  <ul class="navigation actions" role="navigation">
+          <li class="module group">
+            <h4 class="heading">Customize</h4>
+            <ul class="menu">
+              <li aria-haspopup="true">
+                <a href="#">Choose Skin</a>
+                <ul id="skin_chooser" class="expandable secondary">
+                  <li><a href="/skins/unset">Default</a></li>
+                    <li><a href="/skins/891/set">Low Vision Default</a></li>
+                    <li><a href="/skins/929/set">Reversi</a></li>
+                    <li><a href="/skins/932/set">Snow Blue</a></li>
+                </ul> 
+              </li>
+            </ul>
+          </li>
+    <li class="module group">
+      <h4 class="heading">About the Archive</h4>
+      <ul class="menu">
+        <li><a href="/site_map">Site Map</a></li>
+        <li><a href="/diversity">Diversity Statement</a></li>
+        <li><a href="/tos">Terms of Service</a></li>
+        <li><a href="/dmca">DMCA Policy</a> </li>
+      </ul>
+    </li>
+    <li class="module group">
+      <h4 class="heading">Contact Us</h4>
+      <ul class="menu">
+        <li><a href="/abuse_reports/new">Report Abuse</a></li>
+        <li><a href="/support">Technical Support and Feedback</a></li>
+      </ul>
+    </li>
+    <li class="module group">
+      <h4 class="heading">Development</h4>
+      <ul class="menu">
+          <li><a href="https://github.com/otwcode/otwarchive/commits/v0.9.291.2">otwarchive v0.9.291.2</a></li>
+        <li><a href="/known_issues">Known Issues</a></li>
+        <li><a href="http://www.gnu.org/licenses/gpl-2.0.html" title="View License">GPL</a> by the <a href="http://transformativeworks.org/" title="The Organization for Transformative Works">OTW</a></li>
+      </ul>
+    </li>
+  </ul>
+</div>
+<!-- END footer -->
+
+    </div>
+    <!-- check to see if this controller/action allow tinymce before we load the gigantor js; see application_helper -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" type="text/javascript"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js" type="text/javascript"></script>
+<!-- if user has googleapis blocked for some reason we need a fallback -->
+<script type="text/javascript">if(typeof jQuery=='undefined'){document.write(unescape("%3Cscript src='/javascripts/jquery.min.js' type='text/javascript'%3E%3C/script%3E"));document.write(unescape("%3Cscript src='/javascripts/jquery-ui.min.js' type='text/javascript'%3E%3C/script%3E"));}</script>
+
+
+<script type="text/javascript">$j=jQuery.noConflict();</script>
+<script src="/javascripts/jquery.scrollTo.min.js"></script>
+<script src="/javascripts/jquery.livequery.min.js"></script>
+<script src="/javascripts/rails.js"></script>
+<script src="/javascripts/application.js"></script>
+<script src="/javascripts/bootstrap/bootstrap-dropdown.min.js"></script>
+<script src="/javascripts/jquery-shuffle.js"></script>
+<script src="/javascripts/jquery.tokeninput.min.js"></script>
+<script src="/javascripts/jquery.trap.min.js"></script>
+<script src="/javascripts/ao3modal.min.js"></script>
+<script src="/javascripts/js.cookie.min.js"></script>
+
+<script src="/javascripts/filters.min.js"></script>
+
+
+
+
+  <script>$j(document).ready(function(){$j("#expand-fandoms").removeClass("hidden").click(function(e){e.preventDefault();$j(".more").toggleClass("hidden");$j("#collapse-fandoms").toggleClass("hidden");$j(this).toggleClass("hidden");});$j("#collapse-fandoms").click(function(e){e.preventDefault();$j(".more").toggleClass("hidden");$j("#expand-fandoms").toggleClass("hidden");$j(this).toggleClass("hidden");});});</script>
+  <script>$j("#hide-first-login-help").click(function(){$j("#first-login-help-banner").hide();})</script>
+
+  </body>
+</html>
