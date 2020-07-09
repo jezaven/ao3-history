@@ -1,11 +1,17 @@
 # spider to scrape from reading history
 import scrapy
 
-# Returns true if login failed
-def authentication_failed(response):
+# Returns true if it is the login page
+def login_page(response):
     if "Log in".encode() in response.body:
         return True
     return False
+
+def first_login(response):
+    if "History" == response.xpath('//h2[@class="heading"]/text()').get():
+        return False
+    else:
+        return True
 
 class HistorySpider(scrapy.Spider):
     name = "history"
@@ -21,6 +27,17 @@ class HistorySpider(scrapy.Spider):
 
     # Handles response downloaded from Requests
     def parse(self, response):
+        if login_page(response):
+            return self.login(response)
+        else:
+            if first_login(response):
+                history_page = response.xpath('//a[contains(@href, "readings")]/@href').get()
+                return response.follow(url=history_page, callback=self.parse_history)
+            else:
+                return self.parse_history(response)
+
+    # Handles login
+    def login(self, response):
         token = response.css('input[name=authenticity_token]::attr(value)').extract_first()
 
         return scrapy.FormRequest.from_response(
@@ -35,14 +52,11 @@ class HistorySpider(scrapy.Spider):
 
     # Handles post login response
     def after_login(self, response):
-        if authentication_failed(response):
+        if login_page(response):
             self.logger.error("Login failed")
             return
         else:
-            return scrapy.Request(
-                url='https://archiveofourown.org/users/jeza/readings',
-                callback=self.parse_history
-            )
+            return self.parse(response)
 
     # Extracts works from history pages
     # NOTE: need to include ratings
