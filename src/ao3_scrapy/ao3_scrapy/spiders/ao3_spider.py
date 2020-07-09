@@ -3,7 +3,7 @@ import scrapy
 
 # Returns true if login failed
 def authentication_failed(response):
-    if "The password or user name you entered doesn't match our records".encode() in response.body:
+    if "Log in".encode() in response.body:
         return True
     return False
 
@@ -12,7 +12,6 @@ class HistorySpider(scrapy.Spider):
 
     # Returns iterable of Requests
     def start_requests(self):
-        # NOTE: temporary ao3 page before figuring out account authentication
         urls = [
             'https://archiveofourown.org/users/login'
         ]
@@ -46,6 +45,8 @@ class HistorySpider(scrapy.Spider):
             )
 
     # Extracts works from history pages
+    # NOTE: need to include ratings
+    # NOTE: convert to xpath calls
     def parse_history(self, response):
         for work in response.css('li.work'):
             # NOTE: href values (urls) can be found using ::attr(href)
@@ -74,3 +75,7 @@ class HistorySpider(scrapy.Spider):
                         'hits' : work.css('dl.stats dd.hits::text').getall()
                     }
             }
+
+        next_page = response.css('li.next a::attr(href)').get()
+        if next_page is not None:
+            yield response.follow(next_page, callback=self.parse)
