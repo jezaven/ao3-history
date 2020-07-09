@@ -1,12 +1,13 @@
 # spider to scrape from reading history
 import scrapy
 
-# Returns true if it is the login page
+# Returns True if it is the login page
 def login_page(response):
     if "Log in".encode() in response.body:
         return True
     return False
 
+# Returns True if it is the first login attempt
 def first_login(response):
     if "History" == response.xpath('//h2[@class="heading"]/text()').get():
         return False
@@ -38,7 +39,7 @@ class HistorySpider(scrapy.Spider):
 
     # Handles login
     def login(self, response):
-        token = response.css('input[name=authenticity_token]::attr(value)').extract_first()
+        token = response.xpath('//input[@name="authenticity_token"]/@value').get()
 
         return scrapy.FormRequest.from_response(
             response,
@@ -60,14 +61,15 @@ class HistorySpider(scrapy.Spider):
 
     # Extracts works from history pages
     # NOTE: need to include ratings
+    # NOTE: need to include history notes
     # NOTE: convert to xpath calls
     def parse_history(self, response):
         for work in response.css('li.work'):
             # NOTE: href values (urls) can be found using ::attr(href)
             yield {
-                'title' : work.css('div.header h4.heading a::text').getall()[0],
-                'author' : work.css('div.header h4.heading a::text').getall()[1],
-                'fandoms' : work.css('div.header h5.fandoms a::text').getall(),
+                'title' : work.xpath('//h4/a/text()').get(), #work.css('div.header h4.heading a::text').getall()[0],
+                'author' : work.xpath('//h4/a[@rel="author"]/text()').getall(), #work.css('div.header h4.heading a::text').getall()[1],
+                'fandoms' : work.xpath('//h5/a/text()').getall(), #work.css('div.header h5.fandoms a::text').getall(),
                 'tags' : {
                         'warnings' : work.css('ul.tags li.warnings a.tag::text').getall(),
                         'relationships' : work.css('ul.tags li.relationships a.tag::text').getall(),
