@@ -104,7 +104,6 @@ class HistorySpider(scrapy.Spider):
             return self.parse(response)
 
     # Extracts works from history pages
-    # NOTE: need to include history notes
     # NOTE: add series field
     # NOTE: improve non-english characters
     # NOTE: add gifted fic
@@ -125,9 +124,14 @@ class HistorySpider(scrapy.Spider):
                     'relationships' : work.css('ul.tags li.relationships a.tag::text').getall(),
                     'characters' : work.css('ul.tags li.characters a.tag::text').getall(),
                     'freeforms' : work.css('ul.tags li.freeforms a.tag::text').getall(),
-                    },
+                },
+                'series' : {
+                    's_title' : work.css('ul.series a::text').getall(),
+                    'part' : work.css('ul.series strong::text').getall(),
+                    'url' : work.css('ul.series a::attr(href)').getall()
+                },
                 # NOTE: needs to be fixed, see call me beep me
-                'summary' :  work.css('blockquote.userstuff::text').getall(),
+                'summary' :  work.css('blockquote.userstuff p::text').getall(),
                 'stats' : {
                     'language' : work.css('dl.stats dd.language::text').getall(),
                     # NOTE: this should be reformatted to an int
@@ -139,7 +143,7 @@ class HistorySpider(scrapy.Spider):
                     'kudos' : work.css('dl.stats dd.kudos a::text').getall(),
                     'bookmarks' : work.css('dl.stats dd.bookmarks a::text').getall(),
                     'hits' : work.css('dl.stats dd.hits::text').getall()
-                    },
+                },
                 'last_visited' : {
                     'date' : visit[0],
                     'version' : visit[1],
