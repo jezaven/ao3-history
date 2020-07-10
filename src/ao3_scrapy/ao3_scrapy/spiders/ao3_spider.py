@@ -17,18 +17,18 @@ def first_login(response):
 # Converts string representation of month to int
 def month_convert(mon):
     convert = {
-        'Jan' : '01',
-        'Feb' : '02',
-        'Mar' : '03',
-        'Apr' : '04',
-        'May' : '05',
-        'Jun' : '06',
-        'Jul' : '07',
-        'Aug' : '08',
-        'Sep' : '09',
-        'Oct' : '10',
-        'Nov' : '11',
-        'Dec' : '12'
+        'Jan' : 1,
+        'Feb' : 2,
+        'Mar' : 3,
+        'Apr' : 4,
+        'May' : 5,
+        'Jun' : 6,
+        'Jul' : 7,
+        'Aug' : 8,
+        'Sep' : 9,
+        'Oct' : 10,
+        'Nov' : 11,
+        'Dec' : 12
     }
     return convert[mon]
 
@@ -41,9 +41,9 @@ def parse_last_visited(work):
     # Clean date
     temp_date = all_stats[0].split()
     all_stats[0] = {
-        'day' : temp_date[0],
+        'day' : int(temp_date[0]),
         'month' : month_convert(temp_date[1]),
-        'year' : temp_date[2]
+        'year' : int(temp_date[2])
     }
 
     # Clean version information
@@ -104,9 +104,10 @@ class HistorySpider(scrapy.Spider):
             return self.parse(response)
 
     # Extracts works from history pages
-    # NOTE: add series field
     # NOTE: improve non-english characters
     # NOTE: add gifted fic
+    # NOTE: change empty stats to 0
+    # NOTE: convert numbers to int
     def parse_history(self, response):
         for work in response.xpath('//li[contains(@id, "work")]'):
             visit = parse_last_visited(work)
@@ -126,23 +127,23 @@ class HistorySpider(scrapy.Spider):
                     'freeforms' : work.css('ul.tags li.freeforms a.tag::text').getall(),
                 },
                 'series' : {
-                    's_title' : work.css('ul.series a::text').getall(),
-                    'part' : work.css('ul.series strong::text').getall(),
-                    'url' : work.css('ul.series a::attr(href)').getall()
+                    's_title' : work.css('ul.series a::text').get(),
+                    'part' : work.css('ul.series strong::text').get(),
+                    'url' : work.css('ul.series a::attr(href)').get()
                 },
                 # NOTE: needs to be fixed, see call me beep me
                 'summary' :  work.css('blockquote.userstuff p::text').getall(),
                 'stats' : {
                     'language' : work.css('dl.stats dd.language::text').getall(),
                     # NOTE: this should be reformatted to an int
-                    'word_count' : work.css('dl.stats dd.words::text').getall(),
+                    'word_count' : work.css('dl.stats dd.words::text').get(),
                     # NOTE: chapter_done and chapter_total should be reformatted together
-                    'chapter_done' : work.css('dl.stats dd.chapters a::text').getall(),
-                    'chapter_total' : work.css('dl.stats dd.chapters::text').getall(),
-                    'comments' : work.css('dl.stats dd.comments a::text').getall(),
-                    'kudos' : work.css('dl.stats dd.kudos a::text').getall(),
-                    'bookmarks' : work.css('dl.stats dd.bookmarks a::text').getall(),
-                    'hits' : work.css('dl.stats dd.hits::text').getall()
+                    'chapter_done' : work.css('dl.stats dd.chapters a::text').get(),
+                    'chapter_total' : work.css('dl.stats dd.chapters::text').get(),
+                    'comments' : work.css('dl.stats dd.comments a::text').get(),
+                    'kudos' : work.css('dl.stats dd.kudos a::text').get(),
+                    'bookmarks' : work.css('dl.stats dd.bookmarks a::text').get(),
+                    'hits' : work.css('dl.stats dd.hits::text').get()
                 },
                 'last_visited' : {
                     'date' : visit[0],
