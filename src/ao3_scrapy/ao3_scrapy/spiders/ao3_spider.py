@@ -38,6 +38,7 @@ class HistorySpider(scrapy.Spider):
                 return self.parse_history(response)
 
     # Handles login
+    # NOTE: need to make user class to path login information from
     def login(self, response):
         token = response.xpath('//input[@name="authenticity_token"]/@value').get()
 
@@ -64,12 +65,11 @@ class HistorySpider(scrapy.Spider):
     # NOTE: need to include history notes
     # NOTE: convert to xpath calls
     def parse_history(self, response):
-        for work in response.css('li.work'):
-            # NOTE: href values (urls) can be found using ::attr(href)
+        for work in response.xpath('//li[contains(@id, "work")]'):
             yield {
-                'title' : work.xpath('//h4/a/text()').get(), #work.css('div.header h4.heading a::text').getall()[0],
-                'author' : work.xpath('//h4/a[@rel="author"]/text()').getall(), #work.css('div.header h4.heading a::text').getall()[1],
-                'fandoms' : work.xpath('//h5/a/text()').getall(), #work.css('div.header h5.fandoms a::text').getall(),
+                'title' : work.xpath('.//h4/a/text()').get(), #work.css('div.header h4.heading a::text').getall()[0],
+                'author' : work.xpath('.//h4/a[@rel="author"]/text()').getall(), #work.css('div.header h4.heading a::text').getall()[1],
+                'fandoms' : work.xpath('.//h5/a/text()').getall(), #work.css('div.header h5.fandoms a::text').getall(),
                 'tags' : {
                         'warnings' : work.css('ul.tags li.warnings a.tag::text').getall(),
                         'relationships' : work.css('ul.tags li.relationships a.tag::text').getall(),
