@@ -61,22 +61,27 @@ class HistorySpider(scrapy.Spider):
             return self.parse(response)
 
     # Extracts works from history pages
-    # NOTE: need to include ratings
     # NOTE: need to include history notes
-    # NOTE: convert to xpath calls
+    # NOTE: add series field
+    # NOTE: improve non-english characters
+    # NOTE: add gifted fic
     def parse_history(self, response):
         for work in response.xpath('//li[contains(@id, "work")]'):
             yield {
-                'title' : work.xpath('.//h4/a/text()').get(), #work.css('div.header h4.heading a::text').getall()[0],
-                'author' : work.xpath('.//h4/a[@rel="author"]/text()').getall(), #work.css('div.header h4.heading a::text').getall()[1],
-                'fandoms' : work.xpath('.//h5/a/text()').getall(), #work.css('div.header h5.fandoms a::text').getall(),
+                'title' : work.xpath('.//h4/a/text()').get(),
+                'author' : work.xpath('.//h4/a[@rel="author"]/text()').getall(),
+                'fandoms' : work.xpath('.//h5/a/text()').getall(),
                 'tags' : {
-                        'warnings' : work.css('ul.tags li.warnings a.tag::text').getall(),
+                        'ratings' : work.css('ul.required-tags span.rating::attr(title)').get(),
+                        'warnings' : work.css('ul.required-tags span.warnings::attr(title)').getall(), #work.css('ul.tags li.warnings a.tag::text').getall(),
+                        # NOTE: multiple categories stored as one element
+                        'category' : work.css('ul.required-tags span.category::attr(title)').get(),
+                        'completion' : work.css('ul.required-tags span.iswip::attr(title)').get(),
                         'relationships' : work.css('ul.tags li.relationships a.tag::text').getall(),
                         'characters' : work.css('ul.tags li.characters a.tag::text').getall(),
                         'freeforms' : work.css('ul.tags li.freeforms a.tag::text').getall(),
                     },
-                # NOTE: this needs to be reformatted in particular; currently stores as list
+                # NOTE: needs to be fixed, see call me beep me
                 'summary' :  work.css('blockquote.userstuff p::text').getall(),
                 'stats' : {
                         'language' : work.css('dl.stats dd.language::text').getall(),
