@@ -57,6 +57,16 @@ def parse_last_visited(work):
 
     return all_stats
 
+# Cleans summary data for parse_history
+def parse_summary(work):
+    raw = work.xpath('.//blockquote[@class="userstuff summary"]//text()').getall()
+
+    for i in range(len(raw)):
+        raw[i] = raw[i].strip('\n ')
+
+    raw_new = list(filter(None, raw))
+    return ''.join(raw)
+
 class HistorySpider(scrapy.Spider):
     name = "history"
 
@@ -111,6 +121,7 @@ class HistorySpider(scrapy.Spider):
     def parse_history(self, response):
         for work in response.xpath('//li[contains(@id, "work")]'):
             visit = parse_last_visited(work)
+            summary = parse_summary(work)
 
             yield {
                 'title' : work.xpath('.//h4/a/text()').get(),
@@ -131,8 +142,7 @@ class HistorySpider(scrapy.Spider):
                     'part' : work.css('ul.series strong::text').get(),
                     'url' : work.css('ul.series a::attr(href)').get()
                 },
-                # NOTE: needs to be fixed, see call me beep me
-                'summary' :  work.css('blockquote.userstuff p::text').getall(),
+                'summary' :  summary,
                 'stats' : {
                     'language' : work.css('dl.stats dd.language::text').getall(),
                     # NOTE: this should be reformatted to an int
