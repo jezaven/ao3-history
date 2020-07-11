@@ -32,6 +32,21 @@ def month_convert(mon):
     }
     return convert[mon]
 
+# Cleans category data for parse_history
+def parse_category(work):
+    raw = work.css('ul.required-tags span.category::attr(title)').get()
+    return raw.split(', ')
+
+# Cleans summary data for parse_history
+def parse_summary(work):
+    raw = work.xpath('.//blockquote[@class="userstuff summary"]//text()').getall()
+
+    for i in range(len(raw)):
+        raw[i] = raw[i].strip('\n ')
+
+    raw_new = list(filter(None, raw))
+    return ''.join(raw)
+
 # Cleans last visited data for parse_history
 def parse_last_visited(work):
     raw = work.css('h4.viewed::text').getall()
@@ -56,16 +71,6 @@ def parse_last_visited(work):
         all_stats[2] = 1
 
     return all_stats
-
-# Cleans summary data for parse_history
-def parse_summary(work):
-    raw = work.xpath('.//blockquote[@class="userstuff summary"]//text()').getall()
-
-    for i in range(len(raw)):
-        raw[i] = raw[i].strip('\n ')
-
-    raw_new = list(filter(None, raw))
-    return ''.join(raw)
 
 class HistorySpider(scrapy.Spider):
     name = "history"
@@ -120,8 +125,9 @@ class HistorySpider(scrapy.Spider):
     # NOTE: convert numbers to int
     def parse_history(self, response):
         for work in response.xpath('//li[contains(@id, "work")]'):
-            visit = parse_last_visited(work)
+            category = parse_category(work)
             summary = parse_summary(work)
+            visit = parse_last_visited(work)
 
             yield {
                 'title' : work.xpath('.//h4/a/text()').get(),
@@ -130,8 +136,7 @@ class HistorySpider(scrapy.Spider):
                 'tags' : {
                     'ratings' : work.css('ul.required-tags span.rating::attr(title)').get(),
                     'warnings' : work.css('ul.required-tags span.warnings::attr(title)').getall(),
-                    # NOTE: multiple categories stored as one element
-                    'category' : work.css('ul.required-tags span.category::attr(title)').get(),
+                    'category' : category,
                     'completion' : work.css('ul.required-tags span.iswip::attr(title)').get(),
                     'relationships' : work.css('ul.tags li.relationships a.tag::text').getall(),
                     'characters' : work.css('ul.tags li.characters a.tag::text').getall(),
