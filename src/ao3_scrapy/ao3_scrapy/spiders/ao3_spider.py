@@ -40,6 +40,12 @@ def num_convert(num):
     except:
         return num
 
+# Cleans gift data and adds url data for parse_history
+def parse_gifted(work):
+    users = work.xpath('.//h4/a[contains(@href, "gifts")]/text()').getall()
+    urls = work.xpath('.//h4/a[contains(@href, "gifts")]/@href').getall()
+    return dict(zip(users, urls))
+
 # Cleans fandom data and adds url data for parse_history
 def parse_fandoms(work):
     tags = work.xpath('.//h5/a/text()').getall()
@@ -173,9 +179,6 @@ class HistorySpider(scrapy.Spider):
 
     # Extracts works from history pages
     # NOTE: improve non-english characters
-    # NOTE: add gifted fic
-    # NOTE: change empty stats to 0
-    # NOTE: convert numbers to int
     def parse_history(self, response):
         for work in response.xpath('//li[contains(@id, "work")]'):
             visit = parse_last_visited(work)
@@ -184,6 +187,7 @@ class HistorySpider(scrapy.Spider):
             yield {
                 'title' : work.xpath('.//h4/a/text()').get(),
                 'author' : work.xpath('.//h4/a[@rel="author"]/text()').getall(),
+                'gifted' : parse_gifted(work),
                 'fandoms' : parse_fandoms(work),
                 'tags' : {
                     'ratings' : work.css('ul.required-tags span.rating::attr(title)').get(),
