@@ -32,10 +32,16 @@ def month_convert(mon):
     }
     return convert[mon]
 
-# Cleans fandom data for parse_history
+# Cleans fandom data and adds url data for parse_history
 def parse_fandoms(work):
     tags = work.xpath('.//h5/a/text()').getall()
     urls = work.xpath('.//h5/a/@href').getall()
+    return dict(zip(tags, urls))
+
+# Cleans warnings dta and adds url data for parse_history
+def parse_warnings(work):
+    tags = work.css('ul.tags li.warnings a.tag::text').getall()
+    urls = work.css('ul.tags li.warnings a.tag::attr(href)').getall()
     return dict(zip(tags, urls))
 
 # Cleans category data for parse_history
@@ -131,19 +137,16 @@ class HistorySpider(scrapy.Spider):
     # NOTE: convert numbers to int
     def parse_history(self, response):
         for work in response.xpath('//li[contains(@id, "work")]'):
-            fandoms = parse_fandoms(work)
-            category = parse_category(work)
-            summary = parse_summary(work)
             visit = parse_last_visited(work)
 
             yield {
                 'title' : work.xpath('.//h4/a/text()').get(),
                 'author' : work.xpath('.//h4/a[@rel="author"]/text()').getall(),
-                'fandoms' : fandoms,
+                'fandoms' : parse_fandoms(work),
                 'tags' : {
                     'ratings' : work.css('ul.required-tags span.rating::attr(title)').get(),
-                    'warnings' : work.css('ul.required-tags span.warnings::attr(title)').getall(),
-                    'category' : category,
+                    'warnings' : parse_warnings(work),
+                    'category' : parse_category(work),
                     'completion' : work.css('ul.required-tags span.iswip::attr(title)').get(),
                     'relationships' : work.css('ul.tags li.relationships a.tag::text').getall(),
                     'characters' : work.css('ul.tags li.characters a.tag::text').getall(),
@@ -154,7 +157,7 @@ class HistorySpider(scrapy.Spider):
                     'part' : work.css('ul.series strong::text').get(),
                     'url' : work.css('ul.series a::attr(href)').get()
                 },
-                'summary' :  summary,
+                'summary' : parse_summary(work),
                 'stats' : {
                     'language' : work.css('dl.stats dd.language::text').getall(),
                     # NOTE: this should be reformatted to an int
