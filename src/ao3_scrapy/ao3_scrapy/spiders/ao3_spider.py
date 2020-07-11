@@ -38,10 +38,16 @@ def parse_fandoms(work):
     urls = work.xpath('.//h5/a/@href').getall()
     return dict(zip(tags, urls))
 
-# Cleans warnings dta and adds url data for parse_history
+# Cleans warnings data and adds url data for parse_history
 def parse_warnings(work):
     tags = work.css('ul.tags li.warnings a.tag::text').getall()
     urls = work.css('ul.tags li.warnings a.tag::attr(href)').getall()
+    return dict(zip(tags, urls))
+
+# Cleans relationships data and adds url data for parse_history
+def parse_relationships(work):
+    tags = work.css('ul.tags li.relationships a.tag::text').getall()
+    urls = work.css('ul.tags li.relationships a.tag::attr(href)').getall()
     return dict(zip(tags, urls))
 
 # Cleans category data for parse_history
@@ -148,7 +154,7 @@ class HistorySpider(scrapy.Spider):
                     'warnings' : parse_warnings(work),
                     'category' : parse_category(work),
                     'completion' : work.css('ul.required-tags span.iswip::attr(title)').get(),
-                    'relationships' : work.css('ul.tags li.relationships a.tag::text').getall(),
+                    'relationships' : parse_relationships(work),
                     'characters' : work.css('ul.tags li.characters a.tag::text').getall(),
                     'freeforms' : work.css('ul.tags li.freeforms a.tag::text').getall(),
                 },
