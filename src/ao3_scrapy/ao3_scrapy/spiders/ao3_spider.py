@@ -32,6 +32,14 @@ def month_convert(mon):
     }
     return convert[mon]
 
+# Converts string representation of numbers to int
+def num_convert(num):
+    try:
+        new = num.replace(',', '')
+        return int(new)
+    except:
+        return num
+
 # Cleans fandom data and adds url data for parse_history
 def parse_fandoms(work):
     tags = work.xpath('.//h5/a/text()').getall()
@@ -76,6 +84,21 @@ def parse_summary(work):
 
     raw_new = list(filter(None, raw))
     return ''.join(raw)
+
+# Cleans chapter data for parse_history
+def parse_chapter(work):
+    raw_done = work.css('dl.stats dd.chapters a::text').get()
+    raw_total = work.css('dl.stats dd.chapters::text').get()
+
+    try:
+        done = int(raw_done)
+        total = raw_total[1:]
+        if total == '?':
+            return [done, -1]
+        else:
+            return [done, int(total)]
+    except:
+        return [1, 1]
 
 # Cleans last visited data for parse_history
 def parse_last_visited(work):
@@ -156,6 +179,7 @@ class HistorySpider(scrapy.Spider):
     def parse_history(self, response):
         for work in response.xpath('//li[contains(@id, "work")]'):
             visit = parse_last_visited(work)
+            chapter = parse_chapter(work)
 
             yield {
                 'title' : work.xpath('.//h4/a/text()').get(),
@@ -178,15 +202,13 @@ class HistorySpider(scrapy.Spider):
                 'summary' : parse_summary(work),
                 'stats' : {
                     'language' : work.css('dl.stats dd.language::text').getall(),
-                    # NOTE: this should be reformatted to an int
-                    'word_count' : work.css('dl.stats dd.words::text').get(),
-                    # NOTE: chapter_done and chapter_total should be reformatted together
-                    'chapter_done' : work.css('dl.stats dd.chapters a::text').get(),
-                    'chapter_total' : work.css('dl.stats dd.chapters::text').get(),
-                    'comments' : work.css('dl.stats dd.comments a::text').get(),
-                    'kudos' : work.css('dl.stats dd.kudos a::text').get(),
-                    'bookmarks' : work.css('dl.stats dd.bookmarks a::text').get(),
-                    'hits' : work.css('dl.stats dd.hits::text').get()
+                    'word_count' : num_convert(work.css('dl.stats dd.words::text').get()),
+                    'chapter_done' : chapter[0],
+                    'chapter_total' : chapter[1], # -1 indicated unknown chapter_total
+                    'comments' : num_convert(work.css('dl.stats dd.comments a::text').get()),
+                    'kudos' : num_convert(work.css('dl.stats dd.kudos a::text').get()),
+                    'bookmarks' : num_convert(work.css('dl.stats dd.bookmarks a::text').get()),
+                    'hits' : num_convert(work.css('dl.stats dd.hits::text').get())
                 },
                 'last_visited' : {
                     'date' : visit[0],
