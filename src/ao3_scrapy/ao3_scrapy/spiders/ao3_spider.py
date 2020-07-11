@@ -50,6 +50,12 @@ def parse_relationships(work):
     urls = work.css('ul.tags li.relationships a.tag::attr(href)').getall()
     return dict(zip(tags, urls))
 
+# Cleans characters data and adds url data for parse_history
+def parse_characters(work):
+    tags = work.css('ul.tags li.characters a.tag::text').getall()
+    urls = work.css('ul.tags li.characters a.tag::attr(href)').getall()
+    return dict(zip(tags, urls))
+
 # Cleans category data for parse_history
 def parse_category(work):
     raw = work.css('ul.required-tags span.category::attr(title)').get()
@@ -155,7 +161,7 @@ class HistorySpider(scrapy.Spider):
                     'category' : parse_category(work),
                     'completion' : work.css('ul.required-tags span.iswip::attr(title)').get(),
                     'relationships' : parse_relationships(work),
-                    'characters' : work.css('ul.tags li.characters a.tag::text').getall(),
+                    'characters' : parse_characters(work),
                     'freeforms' : work.css('ul.tags li.freeforms a.tag::text').getall(),
                 },
                 'series' : {
