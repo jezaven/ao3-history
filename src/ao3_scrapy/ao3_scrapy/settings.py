@@ -17,6 +17,9 @@ NEWSPIDER_MODULE = 'ao3_scrapy.spiders'
 # Set feed encoding
 FEED_EXPORT_ENCODING = 'utf-8'
 
+# Log all duplicate requests
+DUPEFILTER_DEBUG = True
+
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'ao3_scrapy (+http://www.yourdomain.com)'
 
