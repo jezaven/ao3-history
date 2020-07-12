@@ -14,6 +14,8 @@ BOT_NAME = 'ao3_scrapy'
 SPIDER_MODULES = ['ao3_scrapy.spiders']
 NEWSPIDER_MODULE = 'ao3_scrapy.spiders'
 
+# Set feed encoding
+FEED_EXPORT_ENCODING = 'utf-8'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'ao3_scrapy (+http://www.yourdomain.com)'

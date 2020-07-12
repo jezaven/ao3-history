@@ -178,7 +178,6 @@ class HistorySpider(scrapy.Spider):
             return self.parse(response)
 
     # Extracts works from history pages
-    # NOTE: improve non-english characters
     def parse_history(self, response):
         for work in response.xpath('//li[contains(@id, "work")]'):
             visit = parse_last_visited(work)
