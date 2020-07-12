@@ -1,7 +1,7 @@
 import scrapy
 
 def authentication_failed(response):
-    if "The password or user name you entered doesn't match our records".encode() in response.body:
+    if "Log in".encode() in response.body:
         return True
     return False
 

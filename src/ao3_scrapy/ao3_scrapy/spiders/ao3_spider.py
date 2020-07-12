@@ -164,7 +164,6 @@ class HistorySpider(scrapy.Spider):
                 return self.parse_history(response, account)
 
     # Handles login
-    # NOTE: need to make user class to path login information from
     def login(self, response, account):
         token = response.xpath('//input[@name="authenticity_token"]/@value').get()
 
