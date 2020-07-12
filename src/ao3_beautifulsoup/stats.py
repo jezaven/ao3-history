@@ -6,7 +6,7 @@ import pandas as pd
 import random
 
 start_time = time.time()
-user = User("jeza", "crappypw")
+user = User("username", "password")
 
 df = pd.DataFrame(columns=('id', 'title', 'authors', \
                            'words', 'rating', 'category', \
