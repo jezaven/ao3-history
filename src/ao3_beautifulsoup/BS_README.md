@@ -1,7 +1,13 @@
 # BeautifulSoup Usage
 Earlier version of the scraper using BeautifulSoup. This was switched to scrapy for speed reasons.
 
-During testing, this version took approximately 5.18 seconds to parse 53 fics.
+## Testing Results
+| # of Fics           | Time            |
+|:--------------------| ---------------:|
+| 53                  | 5.177 seconds   |
+| 2316                | 284.977 seconds |
+
+The scraper can get through approximately 8-10 fics per second.
 
 ## Usage
 
