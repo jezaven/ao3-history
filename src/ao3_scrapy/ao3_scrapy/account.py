@@ -8,7 +8,7 @@ class Account(object):
         self.limit = None
         self.pages = 0
 
-    # Set history page limit
+    # Set history reading limit
     def set_limit(self, num):
         self.limit = num
 
