@@ -3,7 +3,7 @@ Earlier version of the scraper using BeautifulSoup. This was switched to scrapy 
 
 ## Testing Results
 | # of Fics           | Fiza's Time     | Jessica's Time                  |
-|:--------------------| ----------------| -------------------------------:|
+|:--------------------| ----------------| ------------------------------- |
 | 53                  | 5.177 seconds   | 4.13 seconds                    |
 | 2238                |                 | 194.7 seconds (before crashing) |
 | 2316                | 284.977 seconds |                                 |
