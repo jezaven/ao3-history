@@ -1,5 +1,6 @@
 # spider to scrape from reading history
 import scrapy
+from ao3_scrapy.account import Account
 
 # Returns True if it is the login page
 def login_page(response):
@@ -136,49 +137,58 @@ class HistorySpider(scrapy.Spider):
 
     # Returns iterable of Requests
     def start_requests(self):
-        urls = [
-            'https://archiveofourown.org/users/login'
-        ]
+        user = Account('jeza', 'crappypw')
+        user.set_limit(3)
 
-        for url in urls:
-            yield scrapy.Request(url=url, callback=self.parse)
+        request = scrapy.Request(
+            url='https://archiveofourown.org/users/login',
+            callback=self.parse,
+            cb_kwargs=dict(account=user)
+        )
+
+        yield request
 
     # Handles response downloaded from Requests
-    def parse(self, response):
+    def parse(self, response, account):
         if login_page(response):
-            return self.login(response)
+            return self.login(response, account)
         else:
             if first_login(response):
                 history_page = response.xpath('//a[contains(@href, "readings")]/@href').get()
-                return response.follow(url=history_page, callback=self.parse_history)
+                return response.follow(
+                    url=history_page,
+                    callback=self.parse_history,
+                    cb_kwargs=dict(account=account)
+                )
             else:
-                return self.parse_history(response)
+                return self.parse_history(response, account)
 
     # Handles login
     # NOTE: need to make user class to path login information from
-    def login(self, response):
+    def login(self, response, account):
         token = response.xpath('//input[@name="authenticity_token"]/@value').get()
 
         return scrapy.FormRequest.from_response(
             response,
             formdata={
-                'user[login]': 'jeza',
-                'user[password]': 'crappypw',
+                'user[login]': account.username,
+                'user[password]': account.password,
                 'authenticity_token' : token
             },
-            callback=self.after_login
+            callback=self.after_login,
+            cb_kwargs=dict(account=account)
         )
 
     # Handles post login response
-    def after_login(self, response):
+    def after_login(self, response, account):
         if login_page(response):
             self.logger.error("Login failed")
             return
         else:
-            return self.parse(response)
+            return self.parse(response, account)
 
     # Extracts works from history pages
-    def parse_history(self, response):
+    def parse_history(self, response, account):
         for work in response.xpath('//li[contains(@id, "work")]'):
             visit = parse_last_visited(work)
             chapter = parse_chapter(work)
@@ -222,4 +232,8 @@ class HistorySpider(scrapy.Spider):
 
         next_page = response.css('li.next a::attr(href)').get()
         if next_page is not None:
-            yield response.follow(next_page, callback=self.parse)
+            yield response.follow(
+                next_page,
+                callback=self.parse,
+                cb_kwargs=dict(account=account)
+            )
