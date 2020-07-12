@@ -191,7 +191,7 @@ class HistorySpider(scrapy.Spider):
     def parse_history(self, response, account):
         for work in response.xpath('//li[contains(@id, "work")]'):
             # Skips over mystery works
-            if work.css('div.class h4.heading::text').get() is not None:
+            if work.css('div.mystery h4.heading::text').get() is not None:
                 continue
 
             visit = parse_last_visited(work)
