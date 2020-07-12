@@ -1,23 +1,23 @@
 import scrapy
 
 def authentication_failed(response):
-    if "The password or user name you entered doesn't match our records".encode() in response.body:
-        return True
-    return False
+    if response.xpath('//div[@id="login"]').get() is None:
+        return False
+    return True
 
 class LoginSpider(scrapy.Spider):
     name = 'login'
     start_urls = ['https://archiveofourown.org/users/login']
 
     def parse(self, response):
-        token = response.css('input[name=authenticity_token]::attr(value)').extract_first()
+        token = response.xpath('//input[@name="authenticity_token"]/@value').get()
 
         return scrapy.FormRequest.from_response(
             response,
             formdata={
+                'authenticity_token' : token,
                 'user[login]': 'jeza',
-                'user[password]': 'crappypw',
-                'authenticity_token' : token
+                'user[password]': 'crappypw'
             },
             callback=self.after_login
         )

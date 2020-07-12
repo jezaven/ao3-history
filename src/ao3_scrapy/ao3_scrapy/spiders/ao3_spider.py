@@ -4,9 +4,9 @@ from ao3_scrapy.account import Account
 
 # Returns True if it is the login page
 def login_page(response):
-    if "Log in".encode() in response.body:
-        return True
-    return False
+    if response.xpath('//div[@id="login"]').get() is None:
+        return False
+    return True
 
 # Returns True if it is the first login attempt
 def first_login(response):
@@ -164,7 +164,6 @@ class HistorySpider(scrapy.Spider):
                 return self.parse_history(response, account)
 
     # Handles login
-    # NOTE: need to make user class to path login information from
     def login(self, response, account):
         token = response.xpath('//input[@name="authenticity_token"]/@value').get()
 
