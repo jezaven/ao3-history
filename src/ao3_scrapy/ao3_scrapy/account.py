@@ -1,6 +1,6 @@
 # Class for user information
 
-class User(object):
+class Account(object):
     # Constructor for User object
     def __init__(self, username, password):
         self.username = username
