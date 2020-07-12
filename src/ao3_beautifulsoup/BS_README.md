@@ -2,10 +2,12 @@
 Earlier version of the scraper using BeautifulSoup. This was switched to scrapy for speed reasons.
 
 ## Testing Results
-| # of Fics           | Time            |
-|:--------------------| ---------------:|
-| 53                  | 5.177 seconds   |
-| 2316                | 284.977 seconds |
+| # of Fics           | Fiza's Time     | Jessica's Time                  |
+|:--------------------| ----------------| -------------------------------:|
+| 53                  | 5.177 seconds   | 4.13 seconds                    |
+| 2238                |                 | 194.7 seconds (before crashing) |
+| 2316                | 284.977 seconds |                                 |
+
 
 The scraper can get through approximately 8-10 fics per second.
 

@@ -36,6 +36,10 @@ for work in user.reading_history():
     start_time = end_time
 
 
-    if (count % 10):
+    if (count % 10 == 0):
         df.to_csv('stats.csv')
+
+    if (count % 1000 == 0):
+        time.sleep(30.0)
+
     count += 1
