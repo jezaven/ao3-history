@@ -7,7 +7,7 @@ Earlier version of the scraper using BeautifulSoup. This was switched to scrapy 
 | 53                  | 5.177 seconds   | 4.13 seconds                    |
 | 2238                |                 | 194.7 seconds (before crashing) |
 | 2316                | 284.977 seconds |                                 |
-
+| 3390                |                 | 448.43 seconds (before crashing)|
 
 The scraper can get through approximately 8-10 fics per second.
 
