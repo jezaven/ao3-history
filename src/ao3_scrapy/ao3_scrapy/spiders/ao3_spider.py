@@ -230,8 +230,9 @@ class HistorySpider(scrapy.Spider):
                 }
             }
 
+        account.update_page()
         next_page = response.css('li.next a::attr(href)').get()
-        if next_page is not None:
+        if next_page is not None and account.check_limit():
             yield response.follow(
                 next_page,
                 callback=self.parse,
