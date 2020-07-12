@@ -16,6 +16,9 @@ class Account(object):
     def update_page(self):
         self.pages = self.pages + 1
 
-    # Check if pages met limit
+    # Returns True if page limit not met
     def check_limit(self):
-        return self.pages < self.limit
+        if self.limit is not None:
+            return self.pages < self.limit
+        else:
+            return True
