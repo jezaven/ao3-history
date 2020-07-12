@@ -1,6 +1,7 @@
 # spider to scrape from reading history
 import scrapy
 from ao3_scrapy.account import Account
+import time
 
 # Returns True if it is the login page
 def login_page(response):
@@ -137,8 +138,8 @@ class HistorySpider(scrapy.Spider):
 
     # Returns iterable of Requests
     def start_requests(self):
-        user = Account('jeza', 'crappypw')
-        user.set_limit(3)
+        user = Account('username', 'password')
+        # user.set_limit(3)
 
         request = scrapy.Request(
             url='https://archiveofourown.org/users/login',
