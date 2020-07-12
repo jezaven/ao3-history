@@ -4,7 +4,7 @@ from ao3_scrapy.account import Account
 
 # Returns True if it is the login page
 def login_page(response):
-    if "Log in".encode() in response.body:
+    if response.xpath('//div[@id="login"]').get() is None:
         return True
     return False
 

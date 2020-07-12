@@ -1,9 +1,9 @@
 import scrapy
 
 def authentication_failed(response):
-    if "Log in".encode() in response.body:
-        return True
-    return False
+    if response.xpath('//div[@id="login"]').get() is None:
+        return False
+    return True
 
 class LoginSpider(scrapy.Spider):
     name = 'login'
