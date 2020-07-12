@@ -190,6 +190,10 @@ class HistorySpider(scrapy.Spider):
     # Extracts works from history pages
     def parse_history(self, response, account):
         for work in response.xpath('//li[contains(@id, "work")]'):
+            # Skips over mystery works
+            if work.css('div.class h4.heading::text').get() is not None:
+                continue
+
             visit = parse_last_visited(work)
             chapter = parse_chapter(work)
 
