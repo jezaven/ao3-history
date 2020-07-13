@@ -10,6 +10,7 @@
 
 ## Time Delay
 | Time Delay | # of Pages  |  Time (seconds) | Crashed? | Person Testing |
+|:-----------|-------------|-----------------|----------|----------------|
 | 1          | 117         | 163.5500        | Yes      | Fiza           |
 | 1          | 177         | 229.35          | Yes      | Jessica        |
 | 1.5        | 118         | 231.3712        | Yes      | Fiza           |
