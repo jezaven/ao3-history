@@ -42,6 +42,11 @@ def num_convert(num):
     except:
         return num
 
+# Cleans work id data for parse_history
+def parse_id(work):
+    raw = work.css('h4.heading').xpath('.//a/@href').get()
+    return int(raw[7:])
+
 # Cleans gift data and adds url data for parse_history
 def parse_gifted(work):
     users = work.xpath('.//h4/a[contains(@href, "gifts")]/text()').getall()
@@ -190,10 +195,15 @@ class HistorySpider(scrapy.Spider):
     # Extracts works from history pages
     def parse_history(self, response, account):
         for work in response.xpath('//li[contains(@id, "work")]'):
+            # Skips over mystery works
+            if work.css('div.mystery h4.heading::text').get() is not None:
+                continue
+
             visit = parse_last_visited(work)
             chapter = parse_chapter(work)
 
             yield {
+                'id' : parse_id(work),
                 'title' : work.xpath('.//h4/a/text()').get(),
                 'author' : work.xpath('.//h4/a[@rel="author"]/text()').getall(),
                 'gifted' : parse_gifted(work),
