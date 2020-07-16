@@ -9,6 +9,7 @@ class Work(object):
         self.authors = None
         self.gifted = ""
         self.fandoms = None
+        self.summary = None
 
         # tags
         self.ratings = None
@@ -23,8 +24,6 @@ class Work(object):
         self.series_title = None
         self.series_part = None
         self.series_url = None
-
-        self.summary = None
 
         # stats
         self.language = ""
@@ -61,6 +60,10 @@ class Work(object):
     # Set fic fandoms
     def set_fandoms(self, fandoms):
         self.fandoms = fandoms
+
+    # Set fic summary
+    def set_summary(self, summary):
+        self.summary = summary
 
     # Set fic ratings
     def set_ratings(self, ratings):
@@ -102,11 +105,7 @@ class Work(object):
     def set_series_url(self, series_url):
         self.series_url = series_url
 
-    # Set fic authors
-    def set_summary(self, summary):
-        self.summary = summary
-
-    # Set fic authors
+    # Set fic language
     def set_language(self, language):
         self.language = language
 
@@ -149,3 +148,44 @@ class Work(object):
     # Set fic last_visit_count
     def set_last_visit_count(self, last_visit_count):
         self.last_visit_count = last_visit_count
+
+    def get_json(self):
+        data = {
+            'id': self.id,
+            'url': self.url,
+            'title': self.title,
+            'authors': self.authors,
+            'gifted': self.gifted,
+            'fandoms': self.fandoms,
+            'summary': self.summary,
+            'tags': {
+                'ratings': self.ratings,
+                'warnings': self.warnings,
+                'categories': self.categories,
+                'completion': self.completion,
+                'relationships': self.relationships,
+                'characters': self.characters,
+                'freeforms': self.freeforms,
+            },
+            'series': {
+                'series_title': self.series_title,
+                'series_part': self.series_part,
+                'series_url': self.series_url,
+            },
+            'stats': {
+                'language': self.language,
+                'word_count': self.word_count,
+                'chapter_done': self.chapter_done,
+                'chapter_total': self.chapter_total,
+                'comments': self.comments,
+                'kudos': self.kudos,
+                'bookmarks': self.bookmarks,
+                'hits': self.hits,
+            },
+            'last_visited': {
+                'date': self.last_visit_date,
+                'version': self.last_visit_version,
+                'count': self.last_visit_count,
+            }
+        }
+        return data

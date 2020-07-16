@@ -1,6 +1,7 @@
 # spider to scrape from reading history
 import scrapy
 from ao3_scrapy.account import Account
+from ao3_scrapy.work import Work
 import time
 
 # Returns True if it is the login page
@@ -143,7 +144,7 @@ class HistorySpider(scrapy.Spider):
 
     # Returns iterable of Requests
     def start_requests(self):
-        user = Account('username', 'password')
+        user = Account('jeza', 'crappypw')
         # user.set_limit(3)
 
         request = scrapy.Request(
@@ -202,43 +203,40 @@ class HistorySpider(scrapy.Spider):
             visit = parse_last_visited(work)
             chapter = parse_chapter(work)
 
-            yield {
-                'id' : parse_id(work),
-                'title' : work.xpath('.//h4/a/text()').get(),
-                'author' : work.xpath('.//h4/a[@rel="author"]/text()').getall(),
-                'gifted' : parse_gifted(work),
-                'fandoms' : parse_fandoms(work),
-                'tags' : {
-                    'ratings' : work.css('ul.required-tags span.rating::attr(title)').get(),
-                    'warnings' : parse_warnings(work),
-                    'category' : parse_category(work),
-                    'completion' : work.css('ul.required-tags span.iswip::attr(title)').get(),
-                    'relationships' : parse_relationships(work),
-                    'characters' : parse_characters(work),
-                    'freeforms' : parse_freeforms(work),
-                },
-                'series' : {
-                    's_title' : work.css('ul.series a::text').get(),
-                    'part' : work.css('ul.series strong::text').get(),
-                    'url' : work.css('ul.series a::attr(href)').get()
-                },
-                'summary' : parse_summary(work),
-                'stats' : {
-                    'language' : work.css('dl.stats dd.language::text').getall(),
-                    'word_count' : num_convert(work.css('dl.stats dd.words::text').get()),
-                    'chapter_done' : chapter[0],
-                    'chapter_total' : chapter[1], # -1 indicated unknown chapter_total
-                    'comments' : num_convert(work.css('dl.stats dd.comments a::text').get()),
-                    'kudos' : num_convert(work.css('dl.stats dd.kudos a::text').get()),
-                    'bookmarks' : num_convert(work.css('dl.stats dd.bookmarks a::text').get()),
-                    'hits' : num_convert(work.css('dl.stats dd.hits::text').get())
-                },
-                'last_visited' : {
-                    'date' : visit[0],
-                    'version' : visit[1],
-                    'count' : visit[2]
-                }
-            }
+            fic = Work()
+            fic.set_id(parse_id(work))
+            fic.set_title(work.xpath('.//h4/a/text()').get())
+            fic.set_authors(work.xpath('.//h4/a[@rel="author"]/text()').getall())
+            fic.set_gifted(parse_gifted(work))
+            fic.set_fandoms(parse_fandoms(work))
+            fic.set_summary(parse_summary(work))
+
+            fic.set_ratings(work.css('ul.required-tags span.rating::attr(title)').get())
+            fic.set_warnings(parse_warnings(work))
+            fic.set_categories(parse_category(work))
+            fic.set_completion(work.css('ul.required-tags span.iswip::attr(title)').get())
+            fic.set_relationships(parse_relationships(work))
+            fic.set_characters(parse_characters(work))
+            fic.set_freeforms(parse_freeforms(work))
+
+            fic.set_series_title(work.css('ul.series a::text').get())
+            fic.set_series_part(work.css('ul.series strong::text').get())
+            fic.set_series_url(work.css('ul.series a::attr(href)').get())
+
+            fic.set_language(work.css('dl.stats dd.language::text').getall())
+            fic.set_word_count(num_convert(work.css('dl.stats dd.words::text').get()))
+            fic.set_chapter_done(chapter[0])
+            fic.set_chapter_total(chapter[1]) # -1 indicated unknown chapter_total)
+            fic.set_comments(num_convert(work.css('dl.stats dd.comments a::text').get()))
+            fic.set_kudos(num_convert(work.css('dl.stats dd.kudos a::text').get()))
+            fic.set_bookmarks(num_convert(work.css('dl.stats dd.bookmarks a::text').get()))
+            fic.set_hits(num_convert(work.css('dl.stats dd.hits::text').get()))
+
+            fic.set_last_visit_date(visit[0])
+            fic.set_last_visit_version(visit[1])
+            fic.set_last_visit_count(visit[2])
+
+            yield fic.get_json()
 
         account.update_page()
         next_page = response.css('li.next a::attr(href)').get()
