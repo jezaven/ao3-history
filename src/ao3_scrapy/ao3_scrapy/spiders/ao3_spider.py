@@ -1,7 +1,7 @@
 # spider to scrape from reading history
 import scrapy
-from ao3_scrapy.account import Account
-from ao3_scrapy.work import Work
+from .account import Account
+from .work import Work
 import time
 
 # Returns True if it is the login page
