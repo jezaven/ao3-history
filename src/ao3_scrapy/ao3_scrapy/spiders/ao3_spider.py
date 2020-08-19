@@ -144,7 +144,7 @@ class HistorySpider(scrapy.Spider):
 
     # Returns iterable of Requests
     def start_requests(self):
-        user = Account('jeza', 'crappypw')
+        user = Account('username', 'password')
         # user.set_limit(3)
 
         request = scrapy.Request(
