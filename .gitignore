@@ -2,3 +2,5 @@
 __pycache__/
 *.py[cod]
 *$py.class
+login_test.py
+*.json
