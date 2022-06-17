@@ -1,5 +1,5 @@
 # Requirements to run the AO3 History scraper
 pandas==0.24.1
 requests==2.21.0
-Scrapy==2.1.0
+Scrapy==2.6.1
 beautifulsoup4==4.9.1
